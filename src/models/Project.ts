@@ -7,3 +7,11 @@ export interface Project {
   liveUrl: string | null;
   createdAt: Date;
 }
+
+export interface CreateProjectDto {
+  title: string;
+  description: string;
+  techStack: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+}

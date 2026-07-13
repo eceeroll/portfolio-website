@@ -1,12 +1,13 @@
-import type { Project } from "@/models/Project.js";
+import z from "zod";
 import type { Request, Response } from "express";
-import prisma from "@/config/prisma.js";
+import type { Project } from "@/models/Project.js";
 import { projectSchema } from "@/validators/projectValidator.js";
+import * as projectService from "@/services/projectService.js";
 
 // GET /projects
 export const getProjects = async (req: Request, res: Response) => {
   try {
-    const projects: Project[] = await prisma.project.findMany();
+    const projects: Project[] = await projectService.getAllProjects();
     res.json(projects);
   } catch (error) {
     res
@@ -20,21 +21,13 @@ export const createProject = async (req: Request, res: Response) => {
   const result = projectSchema.safeParse(req.body);
 
   if (!result.success) {
-    return res.status(400).json({ error: result.error.flatten() });
+    return res.status(400).json({
+      error: z.treeifyError(result.error),
+    });
   }
 
   try {
-    const { title, description, techStack, githubUrl, liveUrl } = result.data;
-
-    const newProject: Project = await prisma.project.create({
-      data: {
-        title,
-        description,
-        techStack,
-        githubUrl,
-        liveUrl,
-      },
-    });
+    const newProject: Project = await projectService.createProject(result.data);
 
     res.status(201).json(newProject);
   } catch (error) {
@@ -53,9 +46,7 @@ export const getProjectById = async (req: Request, res: Response) => {
   }
 
   try {
-    const project: Project | null = await prisma.project.findUnique({
-      where: { id },
-    });
+    const project: Project | null = await projectService.getProjectById(id);
 
     if (!project) {
       return res.status(404).json({ error: "Project not found." });
@@ -78,7 +69,7 @@ export const deleteProjectById = async (req: Request, res: Response) => {
   }
 
   try {
-    const deletedProject = await prisma.project.delete({ where: { id } });
+    const deletedProject = await projectService.deleteProjectById(id);
     res.json({
       message: "Project deleted successfully.",
       project: deletedProject,
