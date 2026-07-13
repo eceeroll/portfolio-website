@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { getProjects } from "@/controllers/projectController.js";
+import { getProjects, createProject } from "@/controllers/projectController.js";
 
 const router = Router({ caseSensitive: true });
 
 router.get("/", getProjects);
+router.post("/", createProject);
 
 export default router;
