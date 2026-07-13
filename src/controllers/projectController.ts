@@ -1,4 +1,3 @@
-import z from "zod";
 import type { Request, Response } from "express";
 import type { Project } from "@/models/Project.js";
 import * as projectService from "@/services/projectService.js";
