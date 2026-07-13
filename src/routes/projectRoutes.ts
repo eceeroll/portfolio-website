@@ -5,11 +5,13 @@ import {
   getProjectById,
   deleteProjectById,
 } from "@/controllers/projectController.js";
+import validateRequest from "@/middlewares/validateRequest.js";
+import { projectSchema } from "@/validators/projectValidator.js";
 
 const router = Router({ caseSensitive: true });
 
 router.get("/", getProjects);
-router.post("/", createProject);
+router.post("/", validateRequest(projectSchema), createProject);
 router.get("/:id", getProjectById);
 router.delete("/:id", deleteProjectById);
 

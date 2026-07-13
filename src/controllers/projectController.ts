@@ -1,7 +1,6 @@
 import z from "zod";
 import type { Request, Response } from "express";
 import type { Project } from "@/models/Project.js";
-import { projectSchema } from "@/validators/projectValidator.js";
 import * as projectService from "@/services/projectService.js";
 
 // GET /projects
@@ -18,16 +17,8 @@ export const getProjects = async (req: Request, res: Response) => {
 
 // POST /projects
 export const createProject = async (req: Request, res: Response) => {
-  const result = projectSchema.safeParse(req.body);
-
-  if (!result.success) {
-    return res.status(400).json({
-      error: z.treeifyError(result.error),
-    });
-  }
-
   try {
-    const newProject: Project = await projectService.createProject(result.data);
+    const newProject: Project = await projectService.createProject(req.body);
 
     res.status(201).json(newProject);
   } catch (error) {
