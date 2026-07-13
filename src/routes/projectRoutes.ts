@@ -4,15 +4,20 @@ import {
   createProject,
   getProjectById,
   deleteProjectById,
+  updateProjectById,
 } from "@/controllers/projectController.js";
 import validateRequest from "@/middlewares/validateRequest.js";
-import { projectSchema } from "@/validators/projectValidator.js";
+import {
+  createProjectSchema,
+  updateProjectSchema,
+} from "@/validators/projectValidator.js";
 
 const router = Router({ caseSensitive: true });
 
 router.get("/", getProjects);
-router.post("/", validateRequest(projectSchema), createProject);
+router.post("/", validateRequest(createProjectSchema), createProject);
 router.get("/:id", getProjectById);
 router.delete("/:id", deleteProjectById);
+router.put("/:id", validateRequest(updateProjectSchema), updateProjectById);
 
 export default router;

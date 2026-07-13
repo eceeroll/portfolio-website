@@ -20,3 +20,10 @@ export const deleteProjectById = async (
 ): Promise<Project | null> => {
   return prisma.project.delete({ where: { id } });
 };
+
+export const updateProjectById = async (
+  id: string,
+  data: Partial<CreateProjectDto>,
+): Promise<Project | null> => {
+  return prisma.project.update({ where: { id }, data });
+};

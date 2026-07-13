@@ -30,11 +30,7 @@ export const createProject = async (req: Request, res: Response) => {
 
 // GET /projects/:id
 export const getProjectById = async (req: Request, res: Response) => {
-  const id = req.params.id;
-
-  if (!id || typeof id !== "string") {
-    return res.status(400).json({ error: "Invalid project ID." });
-  }
+  const id = req.params.id as string;
 
   try {
     const project: Project | null = await projectService.getProjectById(id);
@@ -53,11 +49,7 @@ export const getProjectById = async (req: Request, res: Response) => {
 
 // DELETE /projects/:id
 export const deleteProjectById = async (req: Request, res: Response) => {
-  const id = req.params.id;
-
-  if (!id || typeof id !== "string") {
-    return res.status(400).json({ error: "Invalid project ID." });
-  }
+  const id = req.params.id as string;
 
   try {
     const deletedProject = await projectService.deleteProjectById(id);
@@ -69,5 +61,21 @@ export const deleteProjectById = async (req: Request, res: Response) => {
     res
       .status(500)
       .json({ error: "An error occurred while deleting the project." });
+  }
+};
+
+// PUT /projects/:id
+export const updateProjectById = async (req: Request, res: Response) => {
+  const id = req.params.id as string;
+  try {
+    const updatedProject = await projectService.updateProjectById(id, req.body);
+    res.json({
+      message: "Project updated successfully.",
+      project: updatedProject,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: "An error occurred while updating the project." });
   }
 };
