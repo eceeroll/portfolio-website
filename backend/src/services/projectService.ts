@@ -1,5 +1,5 @@
-import prisma from "@/config/prisma.js";
-import type { CreateProjectDto, Project } from "@/models/Project.js";
+import prisma from "src/config/prisma.js";
+import type { CreateProjectDto, Project } from "src/models/Project.js";
 
 export const getAllProjects = async (): Promise<Project[]> => {
   return prisma.project.findMany();
