@@ -1,23 +1,39 @@
-import { useProjects } from "./hooks/useProjects";
-import ProjectCard from "./components/ProjectCard";
-import type { Project } from "./types/Project";
+import Navbar from "./components/Navbar";
 
 function App() {
-  const { projects, loading, error } = useProjects();
-
-  if (loading) {
-    return <div>Loading projects...</div>;
-  } else if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
-    <div>
-      <h1>My Projects</h1>
-      {projects.map((project: Project) => {
-        return <ProjectCard key={project.id} project={project} />;
-      })}
-    </div>
+    <>
+      <Navbar />
+      <main className="bg-background text-text pt-16">
+        <section
+          id="home"
+          className="min-h-screen flex items-center justify-center"
+        >
+          <h1 className="text-4xl">Home Section</h1>
+        </section>
+
+        <section
+          id="about"
+          className="min-h-screen flex items-center justify-center"
+        >
+          <h1 className="text-4xl">About Section</h1>
+        </section>
+
+        <section
+          id="projects"
+          className="min-h-screen flex items-center justify-center"
+        >
+          <h1 className="text-4xl">Projects Section</h1>
+        </section>
+
+        <section
+          id="contact"
+          className="min-h-screen flex items-center justify-center"
+        >
+          <h1 className="text-4xl">Contact Section</h1>
+        </section>
+      </main>
+    </>
   );
 }
 
