@@ -8,4 +8,14 @@
   --color-text: #e4e4e7;
   --color-text-muted: #a1a1aa;
   --color-border: #27272a;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
 }
