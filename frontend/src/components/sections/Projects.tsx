@@ -19,7 +19,7 @@ const ProjectsSection = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <SectionHeading number="02." title="What I've Built" />
+        <SectionHeading number="02" title="My Projects" />
 
         {loading && (
           <p className="text-text-muted font-mono text-sm">

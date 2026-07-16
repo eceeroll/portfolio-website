@@ -14,10 +14,9 @@ const AboutSection = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <SectionHeading number="01." title="About Me" />
+        <SectionHeading number="01" title="About Me" />
 
         <div className="grid md:grid-cols-5 gap-12">
-          {/* Sol: giriş metni */}
           <motion.div
             variants={fadeInUp}
             className="md:col-span-2 text-text-muted leading-relaxed space-y-4"
@@ -39,7 +38,6 @@ const AboutSection = () => {
             </p>
           </motion.div>
 
-          {/* Sağ: timeline kartları */}
           <motion.div
             variants={staggerContainer}
             className="md:col-span-3 flex flex-col gap-4"

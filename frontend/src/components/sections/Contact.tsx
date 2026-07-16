@@ -40,7 +40,7 @@ const ContactSection = () => {
   };
 
   const inputStyles =
-    "w-full bg-surface border border-border rounded-lg px-4 py-3 text-text placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors";
+    "w-full bg-background/50 border border-border rounded-lg px-4 py-3 text-text placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all";
 
   return (
     <section id="contact" className="min-h-screen flex items-center px-6 py-28">
@@ -51,10 +51,9 @@ const ContactSection = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <SectionHeading number="03." title="Get In Touch" />
+        <SectionHeading number="03" title="Get In Touch" />
 
         <div className="grid md:grid-cols-5 gap-12">
-          {/* Sol taraf - bilgi */}
           <motion.div
             variants={fadeInUp}
             className="md:col-span-2 flex flex-col justify-between"
@@ -93,11 +92,10 @@ const ContactSection = () => {
             </div>
           </motion.div>
 
-          {/* Sağ taraf - form */}
           <motion.form
             variants={fadeInUp}
             onSubmit={handleSubmit}
-            className="md:col-span-3 flex flex-col gap-4 bg-surface/50 border border-border rounded-xl p-6 md:p-8"
+            className="md:col-span-3 flex flex-col gap-4 bg-surface/50 backdrop-blur-sm border border-border rounded-xl p-6 md:p-8 hover:border-primary/30 transition-colors"
           >
             <input
               type="text"
