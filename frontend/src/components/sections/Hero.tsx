@@ -4,8 +4,11 @@ import heroImage from "../../assets/photo.png";
 
 const HeroSection = () => {
   return (
-    <section id="home">
-      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+    <section
+      id="home"
+      className="min-h-screen flex items-center px-6 pt-8 pb-12"
+    >
+      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center -mt-12">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -42,7 +45,7 @@ const HeroSection = () => {
               font-extrabold
               tracking-tight
               mb-4
-              bg-linear-to-r
+              bg-gradient-to-r
               from-white
               via-white
               to-primary
@@ -148,7 +151,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: -70, x: 40 }}
+          initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           className="hidden md:flex justify-center"
@@ -166,7 +169,7 @@ const HeroSection = () => {
                 w-full
                 h-auto
                 object-contain
-                -translate-y-8
+                -translate-y-12
                 hover:scale-105
                 transition-all
                 duration-500
