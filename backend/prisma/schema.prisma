@@ -22,6 +22,7 @@ model Project {
   githubUrl   String?
   liveUrl     String?
   createdAt   DateTime @default(now())
+  imageUrl    String?
 }
 
 

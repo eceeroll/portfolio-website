@@ -6,6 +6,7 @@ export interface Project {
   githubUrl: string | null;
   liveUrl: string | null;
   createdAt: Date;
+  imageUrl?: string | null;
 }
 
 export interface CreateProjectDto {
@@ -14,4 +15,5 @@ export interface CreateProjectDto {
   techStack: string[];
   githubUrl?: string;
   liveUrl?: string;
+  imageUrl?: string;
 }
