@@ -31,6 +31,7 @@ export type ProjectMinAggregateOutputType = {
   githubUrl: string | null
   liveUrl: string | null
   createdAt: Date | null
+  imageUrl: string | null
 }
 
 export type ProjectMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type ProjectMaxAggregateOutputType = {
   githubUrl: string | null
   liveUrl: string | null
   createdAt: Date | null
+  imageUrl: string | null
 }
 
 export type ProjectCountAggregateOutputType = {
@@ -50,6 +52,7 @@ export type ProjectCountAggregateOutputType = {
   githubUrl: number
   liveUrl: number
   createdAt: number
+  imageUrl: number
   _all: number
 }
 
@@ -61,6 +64,7 @@ export type ProjectMinAggregateInputType = {
   githubUrl?: true
   liveUrl?: true
   createdAt?: true
+  imageUrl?: true
 }
 
 export type ProjectMaxAggregateInputType = {
@@ -70,6 +74,7 @@ export type ProjectMaxAggregateInputType = {
   githubUrl?: true
   liveUrl?: true
   createdAt?: true
+  imageUrl?: true
 }
 
 export type ProjectCountAggregateInputType = {
@@ -80,6 +85,7 @@ export type ProjectCountAggregateInputType = {
   githubUrl?: true
   liveUrl?: true
   createdAt?: true
+  imageUrl?: true
   _all?: true
 }
 
@@ -163,6 +169,7 @@ export type ProjectGroupByOutputType = {
   githubUrl: string | null
   liveUrl: string | null
   createdAt: Date
+  imageUrl: string | null
   _count: ProjectCountAggregateOutputType | null
   _min: ProjectMinAggregateOutputType | null
   _max: ProjectMaxAggregateOutputType | null
@@ -194,6 +201,7 @@ export type ProjectWhereInput = {
   githubUrl?: Prisma.StringNullableFilter<"Project"> | string | null
   liveUrl?: Prisma.StringNullableFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  imageUrl?: Prisma.StringNullableFilter<"Project"> | string | null
 }
 
 export type ProjectOrderByWithRelationInput = {
@@ -204,6 +212,7 @@ export type ProjectOrderByWithRelationInput = {
   githubUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   liveUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -217,6 +226,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   githubUrl?: Prisma.StringNullableFilter<"Project"> | string | null
   liveUrl?: Prisma.StringNullableFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  imageUrl?: Prisma.StringNullableFilter<"Project"> | string | null
 }, "id">
 
 export type ProjectOrderByWithAggregationInput = {
@@ -227,6 +237,7 @@ export type ProjectOrderByWithAggregationInput = {
   githubUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   liveUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ProjectCountOrderByAggregateInput
   _max?: Prisma.ProjectMaxOrderByAggregateInput
   _min?: Prisma.ProjectMinOrderByAggregateInput
@@ -243,6 +254,7 @@ export type ProjectScalarWhereWithAggregatesInput = {
   githubUrl?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   liveUrl?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
+  imageUrl?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
 }
 
 export type ProjectCreateInput = {
@@ -253,6 +265,7 @@ export type ProjectCreateInput = {
   githubUrl?: string | null
   liveUrl?: string | null
   createdAt?: Date | string
+  imageUrl?: string | null
 }
 
 export type ProjectUncheckedCreateInput = {
@@ -263,6 +276,7 @@ export type ProjectUncheckedCreateInput = {
   githubUrl?: string | null
   liveUrl?: string | null
   createdAt?: Date | string
+  imageUrl?: string | null
 }
 
 export type ProjectUpdateInput = {
@@ -273,6 +287,7 @@ export type ProjectUpdateInput = {
   githubUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProjectUncheckedUpdateInput = {
@@ -283,6 +298,7 @@ export type ProjectUncheckedUpdateInput = {
   githubUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProjectCreateManyInput = {
@@ -293,6 +309,7 @@ export type ProjectCreateManyInput = {
   githubUrl?: string | null
   liveUrl?: string | null
   createdAt?: Date | string
+  imageUrl?: string | null
 }
 
 export type ProjectUpdateManyMutationInput = {
@@ -303,6 +320,7 @@ export type ProjectUpdateManyMutationInput = {
   githubUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProjectUncheckedUpdateManyInput = {
@@ -313,6 +331,7 @@ export type ProjectUncheckedUpdateManyInput = {
   githubUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -331,6 +350,7 @@ export type ProjectCountOrderByAggregateInput = {
   githubUrl?: Prisma.SortOrder
   liveUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
 }
 
 export type ProjectMaxOrderByAggregateInput = {
@@ -340,6 +360,7 @@ export type ProjectMaxOrderByAggregateInput = {
   githubUrl?: Prisma.SortOrder
   liveUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
 }
 
 export type ProjectMinOrderByAggregateInput = {
@@ -349,6 +370,7 @@ export type ProjectMinOrderByAggregateInput = {
   githubUrl?: Prisma.SortOrder
   liveUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
 }
 
 export type ProjectCreatetechStackInput = {
@@ -382,6 +404,7 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   githubUrl?: boolean
   liveUrl?: boolean
   createdAt?: boolean
+  imageUrl?: boolean
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -392,6 +415,7 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   githubUrl?: boolean
   liveUrl?: boolean
   createdAt?: boolean
+  imageUrl?: boolean
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -402,6 +426,7 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   githubUrl?: boolean
   liveUrl?: boolean
   createdAt?: boolean
+  imageUrl?: boolean
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectScalar = {
@@ -412,9 +437,10 @@ export type ProjectSelectScalar = {
   githubUrl?: boolean
   liveUrl?: boolean
   createdAt?: boolean
+  imageUrl?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "techStack" | "githubUrl" | "liveUrl" | "createdAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "techStack" | "githubUrl" | "liveUrl" | "createdAt" | "imageUrl", ExtArgs["result"]["project"]>
 
 export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Project"
@@ -427,6 +453,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     githubUrl: string | null
     liveUrl: string | null
     createdAt: Date
+    imageUrl: string | null
   }, ExtArgs["result"]["project"]>
   composites: {}
 }
@@ -857,6 +884,7 @@ export interface ProjectFieldRefs {
   readonly githubUrl: Prisma.FieldRef<"Project", 'String'>
   readonly liveUrl: Prisma.FieldRef<"Project", 'String'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
+  readonly imageUrl: Prisma.FieldRef<"Project", 'String'>
 }
     
 

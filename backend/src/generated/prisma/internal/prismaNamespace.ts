@@ -524,7 +524,8 @@ export const ProjectScalarFieldEnum = {
   techStack: 'techStack',
   githubUrl: 'githubUrl',
   liveUrl: 'liveUrl',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  imageUrl: 'imageUrl'
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
