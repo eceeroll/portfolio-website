@@ -1,5 +1,8 @@
+import { motion } from "framer-motion";
 import { useProjects } from "../../hooks/useProjects";
 import ProjectCard from "../ui/ProjectCard";
+import SectionHeading from "../ui/SectionHeading";
+import { fadeInUp, staggerContainer } from "../../lib/animations";
 
 const ProjectsSection = () => {
   const { projects, loading, error } = useProjects();
@@ -7,25 +10,36 @@ const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen flex items-center px-6 py-20"
+      className="min-h-screen flex items-center px-6 py-28"
     >
-      <div className="max-w-5xl mx-auto w-full">
-        <p className="text-primary font-mono text-sm mb-2">02. Projects</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-text mb-8">
-          What I've Built
-        </h2>
+      <motion.div
+        className="max-w-5xl mx-auto w-full"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <SectionHeading number="02." title="What I've Built" />
 
-        {loading && <p className="text-text-muted">Loading projects...</p>}
-        {error && <p className="text-red-400">Error: {error}</p>}
+        {loading && (
+          <p className="text-text-muted font-mono text-sm">
+            Loading projects...
+          </p>
+        )}
+        {error && (
+          <p className="text-red-400 font-mono text-sm">Error: {error}</p>
+        )}
 
         {!loading && !error && (
           <div className="grid md:grid-cols-2 gap-6">
             {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <motion.div key={project.id} variants={fadeInUp}>
+                <ProjectCard project={project} />
+              </motion.div>
             ))}
           </div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 };

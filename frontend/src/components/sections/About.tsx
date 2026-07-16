@@ -1,42 +1,57 @@
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer } from "../../lib/animations";
+import { timelineData } from "../../data/experience";
+import TimelineCard from "../ui/TimelineCard";
+import SectionHeading from "../ui/SectionHeading";
+
 const AboutSection = () => {
   return (
-    <section id="about" className="min-h-screen flex items-center px-6 py-20">
-      <div className="max-w-4xl mx-auto">
-        <p className="text-primary font-mono text-sm mb-2">01. About</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-text mb-8">
-          Who I Am
-        </h2>
+    <section id="about" className="min-h-screen flex items-center px-6 py-28">
+      <motion.div
+        className="max-w-5xl mx-auto w-full"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <SectionHeading number="01." title="About Me" />
 
-        <div className="grid md:grid-cols-3 gap-10">
-          <div className="md:col-span-2 text-text-muted leading-relaxed space-y-4">
+        <div className="grid md:grid-cols-5 gap-12">
+          {/* Sol: giriş metni */}
+          <motion.div
+            variants={fadeInUp}
+            className="md:col-span-2 text-text-muted leading-relaxed space-y-4"
+          >
             <p>
-              I'm a full-stack developer passionate about building clean,
-              efficient web applications. My journey into programming started
-              with curiosity and has grown into a dedication to writing
-              maintainable, well-structured code.
+              I'm a Computer Engineering student with a strong interest in
+              full-stack development. I enjoy turning ideas into working
+              products — from designing a database schema to shipping a
+              polished, responsive interface.
             </p>
             <p>
-              I enjoy working across the stack — from designing REST APIs and
-              database schemas to crafting responsive, accessible user
-              interfaces.
+              My recent focus has been on the TypeScript ecosystem — building
+              REST APIs with Node.js and Express, working with PostgreSQL and
+              Prisma, and crafting interfaces with React and Tailwind CSS.
             </p>
-          </div>
+            <p>
+              I'm currently looking for opportunities to grow as a developer and
+              contribute to real-world projects.
+            </p>
+          </motion.div>
 
-          <div>
-            <h3 className="text-text font-semibold mb-4">Tech Stack</h3>
-            <ul className="grid grid-cols-2 gap-2 text-text-muted font-mono text-sm">
-              <li>TypeScript</li>
-              <li>React</li>
-              <li>Node.js</li>
-              <li>Express</li>
-              <li>PostgreSQL</li>
-              <li>Prisma</li>
-              <li>Tailwind</li>
-              <li>Git</li>
-            </ul>
-          </div>
+          {/* Sağ: timeline kartları */}
+          <motion.div
+            variants={staggerContainer}
+            className="md:col-span-3 flex flex-col gap-4"
+          >
+            {timelineData.map((item, i) => (
+              <motion.div key={i} variants={fadeInUp}>
+                <TimelineCard item={item} />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
