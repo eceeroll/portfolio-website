@@ -40,14 +40,12 @@ export const socialLinks: SocialLink[] = [
   {
     href: profileData.githubUrl,
     label: "GitHub",
-    displayText: profileData.githubUrl,
     icon: FaGithub,
     external: true,
   },
   {
     href: profileData.linkedinUrl,
     label: "LinkedIn",
-    displayText: profileData.linkedinUrl,
     icon: FaLinkedin,
     external: true,
   },

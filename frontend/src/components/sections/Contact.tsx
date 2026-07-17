@@ -74,7 +74,7 @@ const ContactSection = () => {
                     href={href}
                     target={external ? "_blank" : undefined}
                     rel={external ? "noopener noreferrer" : undefined}
-                    className="flex items-center gap-3 text-text-muted hover:text-primary transition-colors"
+                    className="flex items-center gap-3 text-text-muted hover:translate-x-1 transition-all duration-200"
                   >
                     <Icon size={18} />
                     <span className="text-sm">{displayText ?? label}</span>

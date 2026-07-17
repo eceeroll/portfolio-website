@@ -188,11 +188,7 @@ const Navbar = () => {
               transition-all
               duration-300
 
-              ${
-                menuOpen
-                  ? "max-h-[500px] opacity-100 pb-4"
-                  : "max-h-0 opacity-0"
-              }
+              ${menuOpen ? "max-h-125 opacity-100 pb-4" : "max-h-0 opacity-0"}
             `}
           >
             <div className="px-4 flex flex-col gap-2">
