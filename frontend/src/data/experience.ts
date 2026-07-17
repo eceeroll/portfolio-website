@@ -23,4 +23,13 @@ export const timelineData: TimelineItem[] = [
     description:
       "Worked on real-world features, collaborated with a development team, and gained hands-on experience with production codebases.",
   },
+  {
+    type: "experience",
+    title: "Junior Software Developer",
+    organization: "Nordstrom",
+    period: "2025-2026",
+    description:
+      "Contributed to full-stack software development within an Agile Scrum team, working across frontend, backend, system design, and deployment processes. Collaborated with engineers on production systems, participated in team ceremonies, and helped deliver features in a fast-paced development environment.",
+  },
+  æ,
 ];

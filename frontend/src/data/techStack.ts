@@ -12,6 +12,10 @@ import {
   SiDocker,
   SiVite,
   SiPostman,
+  SiAngular,
+  SiMysql,
+  SiKubernetes,
+  SiTerraform,
 } from "react-icons/si";
 
 export interface TechItem {
@@ -29,9 +33,9 @@ export const techStackData: TechCategory[] = [
     category: "Frontend",
     items: [
       { name: "React", icon: SiReact },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
-      { name: "Vite", icon: SiVite },
+      { name: "Angular", icon: SiAngular },
+      { name: "TailwindCSS", icon: SiTailwindcss },
+      { name: "Typescript", icon: SiTypescript },
     ],
   },
   {
@@ -45,16 +49,16 @@ export const techStackData: TechCategory[] = [
     category: "Database",
     items: [
       { name: "PostgreSQL", icon: SiPostgresql },
-      { name: "Prisma", icon: SiPrisma },
+      { name: "MySQL", icon: SiMysql },
       { name: "MongoDB", icon: SiMongodb },
     ],
   },
   {
-    category: "Tools",
+    category: "Cloud & DevOps",
     items: [
-      { name: "Git", icon: SiGit },
       { name: "Docker", icon: SiDocker },
-      { name: "Postman", icon: SiPostman },
+      { name: "Kubernetes", icon: SiKubernetes },
+      { name: "Terraform", icon: SiTerraform },
     ],
   },
 ];

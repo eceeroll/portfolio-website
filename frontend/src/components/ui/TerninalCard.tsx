@@ -5,9 +5,8 @@ const codeLines = [
   "const developer = {",
   "  name: 'Ece Erol',",
   "  role: 'Full-Stack Developer',",
-  "  stack: ['TypeScript', 'React', 'Node.js'],",
-  "  passion: 'clean architecture',",
-  "  status: 'open to work',",
+  "  focus: ['Frontend', 'Backend', 'Architecture'],",
+  "  coffeConsumed: 'too much',",
   "};",
 ];
 
@@ -37,7 +36,6 @@ const TerminalCard = () => {
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className="w-full max-w-md bg-surface border border-border rounded-xl overflow-hidden shadow-2xl shadow-primary/10"
     >
-      {/* Terminal üst bar */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-background/50">
         <span className="w-3 h-3 rounded-full bg-red-500/70" />
         <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
