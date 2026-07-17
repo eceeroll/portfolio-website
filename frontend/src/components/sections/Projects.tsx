@@ -4,6 +4,7 @@ import ProjectCard from "../ui/ProjectCard";
 import SectionHeading from "../ui/SectionHeading";
 import { fadeInUp, staggerContainer } from "../../lib/animations";
 import { projectsContent } from "../../data/content";
+import ProjectCardSkeleton from "../ui/ProjectCardSkeleton";
 
 const ProjectsSection = () => {
   const { projects, loading, error } = useProjects();
@@ -26,12 +27,11 @@ const ProjectsSection = () => {
         />
 
         {loading && (
-          <p className="text-text-muted font-mono text-sm">
-            {projectsContent.loadingText}
-          </p>
-        )}
-        {error && (
-          <p className="text-red-400 font-mono text-sm">Error: {error}</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <ProjectCardSkeleton key={index} />
+            ))}
+          </div>
         )}
 
         {!loading && !error && (

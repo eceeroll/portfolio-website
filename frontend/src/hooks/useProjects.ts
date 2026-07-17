@@ -10,6 +10,7 @@ export const useProjects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         const data = await getAllProjects();
         setProjects(data);
       } catch (err) {
