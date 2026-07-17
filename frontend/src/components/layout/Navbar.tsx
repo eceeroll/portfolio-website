@@ -92,7 +92,7 @@ const Navbar = () => {
                   font-medium
                   transition-all
                   duration-300
-
+                  font-mono
                   ${
                     activeSection === link.id
                       ? "text-white bg-primary shadow-lg shadow-primary/40"

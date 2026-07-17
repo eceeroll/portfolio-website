@@ -17,28 +17,28 @@ const HeroSection = () => {
           className="text-center md:text-left"
         >
           <motion.div variants={fadeInUp}>
-            <span className="inline-flex items-center px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-mono text-xs tracking-[0.2em] mb-6">
+            <span className="inline-flex items-center px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-manrope text-xs tracking-[0.2em] mb-6">
               {heroContent.badge}
             </span>
           </motion.div>
 
           <motion.h1
             variants={fadeInUp}
-            className="text-5xl md:text-6xl tracking-tight mb-4 bg-linear-to-r from-white via-white to-primary bg-clip-text text-transparent font-syne"
+            className="text-5xl md:text-6xl tracking-tight mb-4 bg-linear-to-r from-white via-white to-primary bg-clip-text text-transparent font-mono"
           >
             {heroContent.name}
           </motion.h1>
 
           <motion.h2
             variants={fadeInUp}
-            className="text-xl md:text-2xl text-text-muted mb-6 font-bricolage"
+            className="text-xl md:text-2xl text-text-muted mb-6 font-space"
           >
             {heroContent.subtitle}
           </motion.h2>
 
           <motion.p
             variants={fadeInUp}
-            className="text-text-muted mb-8 leading-relaxed max-w-md mx-auto md:mx-0 font-sans"
+            className="text-text-muted mb-8 leading-relaxed max-w-md mx-auto md:mx-0 font-mono"
           >
             {heroContent.description}
           </motion.p>

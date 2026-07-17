@@ -45,8 +45,7 @@ const TerminalCard = () => {
         </span>
       </div>
 
-      {/* Kod içeriği */}
-      <div className="p-6 font-mono text-sm leading-relaxed min-h-[220px]">
+      <div className="p-6 font-mono text-sm leading-8 min-h-55 whitespace-pre">
         {displayedLines.map((line, i) => (
           <div key={i} className={getLineColor(line)}>
             {line || "\u00A0"}

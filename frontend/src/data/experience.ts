@@ -31,5 +31,4 @@ export const timelineData: TimelineItem[] = [
     description:
       "Contributed to full-stack software development within an Agile Scrum team, working across frontend, backend, system design, and deployment processes. Collaborated with engineers on production systems, participated in team ceremonies, and helped deliver features in a fast-paced development environment.",
   },
-  æ,
 ];
