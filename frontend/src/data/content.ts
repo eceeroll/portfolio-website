@@ -26,7 +26,7 @@ export const heroContent = {
     { icon: Cpu, label: "Cloud & Deployment" },
   ] as HeroHighlight[],
   ctaPrimary: "View My Projects",
-  ctaSecondary: "Get In Touch",
+  ctaSecondary: "Download CV",
 };
 
 export const aboutContent = {

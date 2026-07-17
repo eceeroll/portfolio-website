@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { staggerContainer, fadeInUp } from "../../lib/animations";
 import { heroContent } from "../../data/content";
 import TerminalCard from "../ui/TerninalCard";
+import { FaDownload } from "react-icons/fa";
 
 const HeroSection = () => {
   return (
@@ -17,7 +18,7 @@ const HeroSection = () => {
           className="text-center md:text-left"
         >
           <motion.div variants={fadeInUp}>
-            <span className="inline-flex items-center px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-mono text-xs tracking-[0.2em] mb-6">
+            <span className="inline-flex items-center px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-mono text-lg tracking-[0.2em] mb-6">
               {heroContent.badge}
             </span>
           </motion.div>
@@ -67,9 +68,12 @@ const HeroSection = () => {
             </a>
 
             <a
-              href="#contact"
-              className="border border-border hover:border-primary bg-surface/40 backdrop-blur-sm text-text px-8 py-3.5 rounded-xl font-semibold hover:-translate-y-1 transition-all"
+              href="/Ece_Erol_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-borde border-zinc-700 hover:border-primary bg-surface/40 backdrop-blur-sm text-text px-8 py-3.5 rounded-xl font-semibold hover:-translate-y-1 transition-all flex items-center gap-2 shadow-lg shadow-black/20"
             >
+              <FaDownload size={14} />
               {heroContent.ctaSecondary}
             </a>
           </motion.div>
