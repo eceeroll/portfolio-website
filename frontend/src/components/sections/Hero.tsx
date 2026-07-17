@@ -17,7 +17,7 @@ const HeroSection = () => {
           className="text-center md:text-left"
         >
           <motion.div variants={fadeInUp}>
-            <span className="inline-flex items-center px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-manrope text-xs tracking-[0.2em] mb-6">
+            <span className="inline-flex items-center px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-mono text-xs tracking-[0.2em] mb-6">
               {heroContent.badge}
             </span>
           </motion.div>
