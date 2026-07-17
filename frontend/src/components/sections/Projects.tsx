@@ -3,6 +3,7 @@ import { useProjects } from "../../hooks/useProjects";
 import ProjectCard from "../ui/ProjectCard";
 import SectionHeading from "../ui/SectionHeading";
 import { fadeInUp, staggerContainer } from "../../lib/animations";
+import { projectsContent } from "../../data/content";
 
 const ProjectsSection = () => {
   const { projects, loading, error } = useProjects();
@@ -19,11 +20,11 @@ const ProjectsSection = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <SectionHeading number="02" title="My Projects" />
+        <SectionHeading number={projectsContent.section.headingNumber} title={projectsContent.section.title} />
 
         {loading && (
           <p className="text-text-muted font-mono text-sm">
-            Loading projects...
+            {projectsContent.loadingText}
           </p>
         )}
         {error && (

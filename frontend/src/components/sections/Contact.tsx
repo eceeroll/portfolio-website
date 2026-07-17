@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { sendContactMessage } from "../../services/contactService";
 import SectionHeading from "../ui/SectionHeading";
 import { fadeInUp, staggerContainer } from "../../lib/animations";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa6";
+import { socialLinks } from "../../data/profile";
+import { contactContent } from "../../data/content";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -51,7 +52,10 @@ const ContactSection = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <SectionHeading number="03" title="Get In Touch" />
+        <SectionHeading
+          number={contactContent.section.headingNumber}
+          title={contactContent.section.title}
+        />
 
         <div className="grid md:grid-cols-5 gap-12">
           <motion.div
@@ -59,36 +63,24 @@ const ContactSection = () => {
             className="md:col-span-2 flex flex-col justify-between"
           >
             <p className="text-text-muted leading-relaxed mb-8">
-              Have a project in mind or just want to say hi? My inbox is always
-              open. I'll try my best to get back to you as soon as possible.
+              {contactContent.intro}
             </p>
 
             <div className="flex flex-col gap-4">
-              <a
-                href="mailto:senin@email.com"
-                className="flex items-center gap-3 text-text-muted hover:text-primary transition-colors"
-              >
-                <FaEnvelope size={18} />
-                <span className="text-sm">senin@email.com</span>
-              </a>
-              <a
-                href="https://github.com/kullaniciadi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-text-muted hover:text-primary transition-colors"
-              >
-                <FaGithub size={18} />
-                <span className="text-sm">github.com/kullaniciadi</span>
-              </a>
-              <a
-                href="https://linkedin.com/in/kullaniciadi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-text-muted hover:text-primary transition-colors"
-              >
-                <FaLinkedin size={18} />
-                <span className="text-sm">linkedin.com/in/kullaniciadi</span>
-              </a>
+              {socialLinks.map(
+                ({ href, label, displayText, icon: Icon, external }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    className="flex items-center gap-3 text-text-muted hover:text-primary transition-colors"
+                  >
+                    <Icon size={18} />
+                    <span className="text-sm">{displayText ?? label}</span>
+                  </a>
+                ),
+              )}
             </div>
           </motion.div>
 
@@ -132,12 +124,14 @@ const ContactSection = () => {
               disabled={status === "loading"}
               className="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0"
             >
-              {status === "loading" ? "Sending..." : "Send Message"}
+              {status === "loading"
+                ? contactContent.submittingLabel
+                : contactContent.submitLabel}
             </button>
 
             {status === "success" && (
               <div className="bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-3 rounded-lg text-sm">
-                ✓ Message sent successfully! I'll get back to you soon.
+                {contactContent.successMessage}
               </div>
             )}
             {status === "error" && (

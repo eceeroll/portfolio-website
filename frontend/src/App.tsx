@@ -16,8 +16,8 @@ function App() {
       <main className="text-text pt-16 relative">
         <HeroSection />
         <StatsSection />
-        <TechStackSection />
         <AboutSection />
+        <TechStackSection />
         <ProjectsSection />
         <ContactSection />
       </main>

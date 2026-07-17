@@ -14,7 +14,7 @@ const TechStackSection = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <SectionHeading number="—" title="Tech Stack" />
+        <SectionHeading number="02" title="Tech Stack" />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {techStackData.map((group) => (

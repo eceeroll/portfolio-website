@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "../../lib/animations";
 import { timelineData } from "../../data/experience";
+import { aboutContent } from "../../data/content";
 import TimelineCard from "../ui/TimelineCard";
 import SectionHeading from "../ui/SectionHeading";
 
@@ -14,28 +15,19 @@ const AboutSection = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <SectionHeading number="01" title="About Me" />
+        <SectionHeading
+          number={aboutContent.section.headingNumber}
+          title={aboutContent.section.title}
+        />
 
         <div className="grid md:grid-cols-5 gap-12">
           <motion.div
             variants={fadeInUp}
             className="md:col-span-2 text-text-muted leading-relaxed space-y-4"
           >
-            <p>
-              I'm a Computer Engineering student with a strong interest in
-              full-stack development. I enjoy turning ideas into working
-              products — from designing a database schema to shipping a
-              polished, responsive interface.
-            </p>
-            <p>
-              My recent focus has been on the TypeScript ecosystem — building
-              REST APIs with Node.js and Express, working with PostgreSQL and
-              Prisma, and crafting interfaces with React and Tailwind CSS.
-            </p>
-            <p>
-              I'm currently looking for opportunities to grow as a developer and
-              contribute to real-world projects.
-            </p>
+            {aboutContent.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </motion.div>
 
           <motion.div

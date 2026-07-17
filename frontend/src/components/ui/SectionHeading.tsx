@@ -19,7 +19,7 @@ const SectionHeading = ({ number, title }: SectionHeadingProps) => {
       rounded-full
       border
       border-primary/20
-      bg-primary/[0.04]
+      bg-primary/4
       backdrop-blur-md
     "
       >
@@ -27,7 +27,7 @@ const SectionHeading = ({ number, title }: SectionHeadingProps) => {
           {number.padStart(2, "0")}
         </span>
 
-        <span className="h-px w-12 bg-gradient-to-r from-primary/70 to-transparent" />
+        <span className="h-px w-12 bg-linear-to-r from-primary/70 to-transparent" />
 
         <span className="text-text-muted font-mono text-xl uppercase tracking-[0.35em]">
           {title}
