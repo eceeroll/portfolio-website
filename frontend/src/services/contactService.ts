@@ -23,7 +23,9 @@ export const sendContactMessage = async (payload: ContactPayload) => {
 
   if (!response.ok) {
     const data = await response.json();
-    throw new Error(data.error?.[0]?.message || "Failed to send message.");
+    throw new Error(
+      data.error?.[0]?.message ?? data.error ?? "Failed to send message.",
+    );
   }
 
   return response.json();
