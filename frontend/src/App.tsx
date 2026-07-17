@@ -7,11 +7,13 @@ import HeroSection from "./components/sections/Hero";
 import ProjectsSection from "./components/sections/Projects";
 import StatsSection from "./components/sections/StatsSection";
 import TechStackSection from "./components/sections/TechStackSection";
+import ScrollProgress from "./components/ui/ScrollProgress";
 
 function App() {
   return (
     <>
       <BackgroundLayer />
+      <ScrollProgress />
       <Navbar />
       <main className="text-text pt-16 relative">
         <HeroSection />
