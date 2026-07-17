@@ -1,16 +1,34 @@
 import "dotenv/config";
 import cors from "cors";
-import express, { type Request, type Response, type Express } from "express";
+import helmet from "helmet";
+import express, { type Express } from "express";
 import projectRoutes from "@/routes/projectRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 
 const app: Express = express();
 
+const allowedOrigins = ["http://localhost:5173", process.env.CLIENT_URL].filter(
+  Boolean,
+);
+
+app.use(helmet());
+
 app.use(
   cors({
-    origin: "http://localhost:5173", // default vite dev server port
+    origin: (origin, callback) => {
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      callback(new Error("Not allowed by CORS"));
+    },
   }),
 );
+
 app.use(express.json());
 
 app.use("/api/projects", projectRoutes);
