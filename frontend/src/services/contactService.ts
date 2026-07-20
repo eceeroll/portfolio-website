@@ -1,4 +1,5 @@
-import API_BASE_URL from "./api";
+import axios from "axios";
+import { api } from "./api.js";
 
 interface ContactPayload {
   name: string;
@@ -7,26 +8,22 @@ interface ContactPayload {
 }
 
 export const sendContactMessage = async (payload: ContactPayload) => {
-  let response: Response;
-
   try {
-    response = await fetch(`${API_BASE_URL}/contact`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-  } catch {
+    const { data } = await api.post("/contact", payload);
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const message =
+        error.response?.data?.error?.[0]?.message ??
+        error.response?.data?.error ??
+        error.message ??
+        "Failed to send message.";
+
+      throw new Error(message);
+    }
+
     throw new Error(
       "Could not reach the server. Please check your connection and try again.",
     );
   }
-
-  if (!response.ok) {
-    const data = await response.json();
-    throw new Error(
-      data.error?.[0]?.message ?? data.error ?? "Failed to send message.",
-    );
-  }
-
-  return response.json();
 };
