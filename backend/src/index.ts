@@ -31,12 +31,12 @@ app.use(
 
 app.use(express.json());
 
-app.use("/api/projects", projectRoutes);
-app.use("/api/contact", contactRoutes);
-
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "I ate my veggies!" });
 });
+
+app.use("/api/projects", projectRoutes);
+app.use("/api/contact", contactRoutes);
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server is running on port " + process.env.PORT || "3000");
