@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { techStackData } from "@/data/techStack";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -7,7 +7,7 @@ import TechCard from "@/components/ui/TechStackCard";
 const TechStackSection = () => {
   return (
     <section className="px-6 py-24">
-      <motion.div
+      <m.div
         className="max-w-5xl mx-auto w-full"
         variants={staggerContainer}
         initial="hidden"
@@ -18,7 +18,7 @@ const TechStackSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {techStackData.map((group) => (
-            <motion.div key={group.category} variants={fadeInUp}>
+            <m.div key={group.category} variants={fadeInUp}>
               <h3 className="text-text-muted font-mono text-xs uppercase tracking-wider mb-4">
                 {group.category}
               </h3>
@@ -27,10 +27,10 @@ const TechStackSection = () => {
                   <TechCard key={tech.name} tech={tech} />
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

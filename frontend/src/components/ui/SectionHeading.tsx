@@ -1,39 +1,58 @@
-import { motion } from "framer-motion";
-import { fadeInUp } from "@/lib/animations";
+import { m } from "framer-motion";
+import { fadeInUp, revealViewport, staggerContainer } from "@/lib/animations";
+import { cn } from "@/lib/cn";
 
 interface SectionHeadingProps {
+  id?: string;
   number: string;
+  eyebrow?: string;
   title: string;
+  description?: string;
+  className?: string;
 }
 
-const SectionHeading = ({ number, title }: SectionHeadingProps) => {
-  return (
-    <motion.div variants={fadeInUp} className="mb-12">
-      <div
-        className="
-      inline-flex
-      items-center
-      gap-4
-      px-5
-      py-3
-      rounded-full
-      border
-      border-primary/20
-      bg-primary/4
-      backdrop-blur-md
-    "
+const SectionHeading = ({
+  id,
+  number,
+  eyebrow,
+  title,
+  description,
+  className,
+}: SectionHeadingProps) => (
+  <m.div
+    variants={staggerContainer}
+    initial="hidden"
+    whileInView="visible"
+    viewport={revealViewport}
+    className={cn("mb-12 max-w-2xl md:mb-16", className)}
+  >
+    <m.p
+      variants={fadeInUp}
+      className="mb-4 inline-flex items-center gap-3 font-mono text-xs tracking-[0.25em] text-primary-soft uppercase"
+    >
+      <span className="text-primary-pale">{number.padStart(2, "0")}</span>
+      <span
+        aria-hidden="true"
+        className="h-px w-10 bg-linear-to-r from-primary-soft to-transparent"
+      />
+      {eyebrow ?? title}
+    </m.p>
+    <m.h2
+      id={id ? `${id}-title` : undefined}
+      variants={fadeInUp}
+      className="text-gradient text-3xl leading-[1.08] font-semibold tracking-tight sm:text-4xl md:text-5xl"
+    >
+      {title}
+    </m.h2>
+    {description && (
+      <m.p
+        variants={fadeInUp}
+        className="mt-5 text-base leading-relaxed text-text-muted md:text-lg"
       >
-        <span className="text-primary font-mono text-2xl font-bold">
-          {number.padStart(2, "0")}
-        </span>
+        {description}
+      </m.p>
+    )}
+  </m.div>
+);
 
-        <span className="h-px w-12 bg-linear-to-r from-primary/70 to-transparent" />
-
-        <span className="text-text-muted font-mono text-xl uppercase tracking-[0.35em]">
-          {title}
-        </span>
-      </div>
-    </motion.div>
-  );
-};
 export default SectionHeading;

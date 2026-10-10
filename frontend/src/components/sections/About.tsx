@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { timelineData } from "@/data/experience";
 import { aboutContent } from "@/data/content";
@@ -8,7 +8,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 const AboutSection = () => {
   return (
     <section id="about" className="min-h-screen flex items-center px-6 py-28">
-      <motion.div
+      <m.div
         className="max-w-5xl mx-auto w-full"
         variants={staggerContainer}
         initial="hidden"
@@ -21,27 +21,27 @@ const AboutSection = () => {
         />
 
         <div className="grid md:grid-cols-5 gap-12">
-          <motion.div
+          <m.div
             variants={fadeInUp}
             className="md:col-span-2 text-text-muted leading-relaxed space-y-4"
           >
             {aboutContent.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             variants={staggerContainer}
             className="md:col-span-3 flex flex-col gap-4"
           >
             {timelineData.map((item, i) => (
-              <motion.div key={i} variants={fadeInUp}>
+              <m.div key={i} variants={fadeInUp}>
                 <TimelineCard item={item} />
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

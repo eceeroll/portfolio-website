@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { GraduationCap, Briefcase } from "lucide-react";
 import type { TimelineItem } from "@/data/experience";
 
@@ -10,7 +10,7 @@ const TimelineCard = ({ item }: TimelineCardProps) => {
   const Icon = item.type === "education" ? GraduationCap : Briefcase;
 
   return (
-    <motion.div
+    <m.div
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
       className="relative bg-surface border border-border rounded-xl p-6 hover:border-primary/40 transition-colors"
@@ -33,7 +33,7 @@ const TimelineCard = ({ item }: TimelineCardProps) => {
           </p>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

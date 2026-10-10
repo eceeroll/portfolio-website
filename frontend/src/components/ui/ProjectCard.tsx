@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ExternalLink, Code2 } from "lucide-react";
 import { FaGithub as Github } from "react-icons/fa6";
 import type { Project } from "@/types/Project";
@@ -9,7 +9,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
-    <motion.div
+    <m.div
       whileHover={{ y: -6 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
       className="group relative bg-surface border border-border rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-shadow"
@@ -76,7 +76,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           ))}
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { sendContactMessage } from "@/services/contactService";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -54,7 +54,7 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="min-h-screen flex items-center px-6 py-28">
-      <motion.div
+      <m.div
         className="max-w-5xl mx-auto w-full"
         variants={staggerContainer}
         initial="hidden"
@@ -67,7 +67,7 @@ const ContactSection = () => {
         />
 
         <div className="grid md:grid-cols-5 gap-12">
-          <motion.div
+          <m.div
             variants={fadeInUp}
             className="md:col-span-2 flex flex-col justify-between"
           >
@@ -91,9 +91,9 @@ const ContactSection = () => {
                 ),
               )}
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.form
+          <m.form
             variants={fadeInUp}
             onSubmit={handleSubmit}
             className="md:col-span-3 flex flex-col gap-4 bg-surface/50 backdrop-blur-sm border border-border rounded-xl p-6 md:p-8 hover:border-primary/30 transition-colors"
@@ -148,9 +148,9 @@ const ContactSection = () => {
                 ✕ {errorMessage}
               </div>
             )}
-          </motion.form>
+          </m.form>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

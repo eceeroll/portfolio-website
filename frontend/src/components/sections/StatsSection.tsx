@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { statsData } from "@/data/stats";
 import StatCard from "@/components/ui/StatCard";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -6,7 +6,7 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 const StatsSection = () => {
   return (
     <section className="px-6 py-16 border-y border-border">
-      <motion.div
+      <m.div
         className="max-w-5xl mx-auto w-full grid grid-cols-2 md:grid-cols-4 gap-8"
         variants={staggerContainer}
         initial="hidden"
@@ -14,11 +14,11 @@ const StatsSection = () => {
         viewport={{ once: true, amount: 0.4 }}
       >
         {statsData.map((stat) => (
-          <motion.div key={stat.label} variants={fadeInUp}>
+          <m.div key={stat.label} variants={fadeInUp}>
             <StatCard stat={stat} />
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
     </section>
   );
 };

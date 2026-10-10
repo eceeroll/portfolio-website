@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { profileData, socialLinks } from "@/data/profile";
 
 const Footer = () => {
@@ -23,7 +23,7 @@ const Footer = () => {
 
         <div className="flex gap-3">
           {socials.map(({ href, icon: Icon, label, external }) => (
-            <motion.a
+            <m.a
               key={label}
               href={href}
               target={external ? "_blank" : undefined}
@@ -34,7 +34,7 @@ const Footer = () => {
               className="w-9 h-9 flex items-center justify-center bg-surface border border-border rounded-lg text-text-muted hover:text-primary hover:border-primary/40 transition-colors"
             >
               <Icon size={16} />
-            </motion.a>
+            </m.a>
           ))}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useProjects } from "@/hooks/useProjects";
 import ProjectCard from "@/components/ui/ProjectCard";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -14,7 +14,7 @@ const ProjectsSection = () => {
       id="projects"
       className="min-h-screen flex items-center px-6 py-28"
     >
-      <motion.div
+      <m.div
         className="max-w-5xl mx-auto w-full"
         variants={staggerContainer}
         initial="hidden"
@@ -59,13 +59,13 @@ const ProjectsSection = () => {
         {!loading && !error && projects.length > 0 && (
           <div className="grid md:grid-cols-2 gap-6">
             {projects.map((project) => (
-              <motion.div key={project.id} variants={fadeInUp}>
+              <m.div key={project.id} variants={fadeInUp}>
                 <ProjectCard project={project} />
-              </motion.div>
+              </m.div>
             ))}
           </div>
         )}
-      </motion.div>
+      </m.div>
     </section>
   );
 };
