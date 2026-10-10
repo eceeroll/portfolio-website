@@ -7,6 +7,7 @@ import {
   updateProjectById,
 } from "@/controllers/projectController.js";
 import validateRequest from "@/middlewares/validateRequest.js";
+import requireAdmin from "@/middlewares/requireAdmin.js";
 import {
   createProjectSchema,
   updateProjectSchema,
@@ -15,9 +16,19 @@ import {
 const router = Router({ caseSensitive: true });
 
 router.get("/", getProjects);
-router.post("/", validateRequest(createProjectSchema), createProject);
+router.post(
+  "/",
+  requireAdmin,
+  validateRequest(createProjectSchema),
+  createProject,
+);
 router.get("/:id", getProjectById);
-router.delete("/:id", deleteProjectById);
-router.put("/:id", validateRequest(updateProjectSchema), updateProjectById);
+router.delete("/:id", requireAdmin, deleteProjectById);
+router.put(
+  "/:id",
+  requireAdmin,
+  validateRequest(updateProjectSchema),
+  updateProjectById,
+);
 
 export default router;
