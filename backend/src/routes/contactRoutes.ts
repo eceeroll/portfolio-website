@@ -1,4 +1,4 @@
-import Router from "express";
+import { Router } from "express";
 import { contactSchema } from "@/validators/contactValidator.js";
 import validateRequest from "@/middlewares/validateRequest.js";
 import { submitContactForm } from "@/controllers/contactController.js";

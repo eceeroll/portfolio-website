@@ -3,9 +3,13 @@ import cors from "cors";
 import helmet from "helmet";
 import express, { type Express } from "express";
 import projectRoutes from "@/routes/projectRoutes.js";
-import contactRoutes from "./routes/contactRoutes.js";
+import contactRoutes from "@/routes/contactRoutes.js";
 
 const app: Express = express();
+
+// Render (and most PaaS hosts) sit behind a single reverse proxy; without this
+// every request shares the proxy IP and the rate limiter throttles everyone.
+app.set("trust proxy", 1);
 
 const allowedOrigins = ["http://localhost:5173", process.env.CLIENT_URL].filter(
   Boolean,
@@ -38,6 +42,8 @@ app.get("/health", (req, res) => {
 app.use("/api/projects", projectRoutes);
 app.use("/api/contact", contactRoutes);
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Server is running on port " + process.env.PORT || "3000");
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

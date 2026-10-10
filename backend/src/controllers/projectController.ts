@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import type { Project } from "@/models/Project.js";
 import * as projectService from "@/services/projectService.js";
+import { isRecordNotFoundError } from "@/utils/prismaErrors.js";
 
 // GET /projects
 export const getProjects = async (req: Request, res: Response) => {
@@ -57,6 +58,10 @@ export const deleteProjectById = async (req: Request, res: Response) => {
       project: deletedProject,
     });
   } catch (error) {
+    if (isRecordNotFoundError(error)) {
+      return res.status(404).json({ error: "Project not found." });
+    }
+
     res
       .status(500)
       .json({ error: "An error occurred while deleting the project." });
@@ -73,6 +78,10 @@ export const updateProjectById = async (req: Request, res: Response) => {
       project: updatedProject,
     });
   } catch (error) {
+    if (isRecordNotFoundError(error)) {
+      return res.status(404).json({ error: "Project not found." });
+    }
+
     return res
       .status(500)
       .json({ error: "An error occurred while updating the project." });

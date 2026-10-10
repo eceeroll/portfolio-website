@@ -1,270 +1,265 @@
-import { useState, useEffect } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { AnimatePresence, m } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
-import { useActiveSection } from "../../hooks/useActiveSections";
-import logo from "../../assets/logo2.png";
-import { navLinks, profileData } from "../../data/profile";
+import { Download, Menu, X } from "lucide-react";
+import { useActiveSection } from "@/hooks/useActiveSections";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { navLinks, profileData } from "@/data/profile";
+import { heroContent } from "@/data/content";
+import { ButtonLink } from "@/components/ui/Button";
+import { EASE_OUT_EXPO } from "@/lib/animations";
+import { cn } from "@/lib/cn";
+import logo from "@/assets/logo.webp";
+
+const SECTION_IDS = navLinks.map((link) => link.id);
+
+const iconLinkClass =
+  "flex h-9 w-9 items-center justify-center rounded-lg text-text-muted transition-colors duration-200 hover:bg-white/5 hover:text-white";
 
 const Navbar = () => {
-  const activeSection = useActiveSection(navLinks.map((link) => link.id));
-
-  const [scrolled, setScrolled] = useState(false);
+  const activeSection = useActiveSection(SECTION_IDS);
+  const { hidden, scrolled } = useScrollDirection();
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuId = useId();
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    if (!menuOpen) return;
 
-    window.addEventListener("scroll", handleScroll);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    const onResize = () => {
+      if (window.innerWidth >= 1280) setMenuOpen(false);
+    };
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [menuOpen]);
+
+  const isHidden = hidden && !menuOpen;
 
   return (
-    <nav
-      className="
-        fixed
-        top-5
-        left-0
-        w-full
-        z-50
-      "
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 px-3 pt-3 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-5 sm:pt-4",
+        isHidden && "-translate-y-[130%]",
+      )}
     >
-      <div className="max-w-7xl mx-auto px-3 md:px-6">
-        <div
-          className={`
-            rounded-2xl
-            border
-            transition-all
-            duration-300
+      <nav
+        aria-label="Primary"
+            className={cn(
+              "mx-auto max-w-6xl rounded-2xl border transition-[background-color,border-color,box-shadow] duration-300",
+              menuOpen
+                ? "border-border bg-surface shadow-[0_10px_40px_-12px_rgb(0_0_0/0.6)]"
+                : scrolled
+                  ? "glass border-border shadow-[0_10px_40px_-12px_rgb(0_0_0/0.6)]"
+                  : "border-transparent bg-transparent",
+            )}
+      >
+        <div className="flex h-16 items-center justify-between gap-4 pr-2 pl-4 sm:pl-5">
+          <a
+            href="#home"
+            aria-label={`${profileData.fullName} — back to top`}
+            className="group flex shrink-0 items-center gap-3 rounded-lg"
+          >
+            <img
+              src={logo}
+              alt=""
+              width={66}
+              height={36}
+              fetchPriority="high"
+              className="h-9 w-auto drop-shadow-[0_0_10px_rgb(139_92_246/0.55)] transition-transform duration-300 group-hover:scale-105"
+            />
+            <span className="hidden font-display text-sm font-semibold tracking-tight text-text sm:inline">
+              {profileData.fullName}
+            </span>
+          </a>
 
-            ${
-              scrolled
-                ? "bg-surface/75 backdrop-blur-xl border-border shadow-xl shadow-black/20"
-                : "bg-surface/40 backdrop-blur-md border-border/50"
-            }
-          `}
-        >
-          {/* Top Bar */}
-          <div className="flex items-center justify-between px-4 md:px-6 py-3">
-            {/* Logo */}
-            <a href="#home" className="flex items-center group">
-              <img
-                src={logo}
-                alt="EE Logo"
-                className="
-                  h-12
-                  md:h-20
-                  w-auto
-                  object-contain
-                  transition-all
-                  duration-300
-                  group-hover:scale-110
-                  drop-shadow-[0_0_12px_rgba(139,92,246,0.5)]
-                "
-              />
+          <ul className="hidden items-center gap-1 xl:flex">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <li key={link.id}>
+                  <a
+                    href={`#${link.id}`}
+                    aria-current={isActive ? "true" : undefined}
+                    className={cn(
+                      "relative block rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200",
+                      isActive
+                        ? "text-white"
+                        : "text-text-muted hover:text-white",
+                    )}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <m.span
+                        layoutId="nav-underline"
+                        aria-hidden="true"
+                        transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                        className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-linear-to-r from-primary-soft via-primary to-primary-soft shadow-[0_0_12px_rgb(139_92_246/0.9)]"
+                      />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="flex items-center gap-1">
+            <a
+              href={profileData.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub profile (opens in a new tab)"
+              className={cn(iconLinkClass, "hidden sm:flex")}
+            >
+              <FaGithub size={18} />
             </a>
-
-            {/* Desktop Navigation */}
-            <div
-              className="
-                hidden
-                md:flex
-                items-center
-                gap-2
-                bg-background/50
-                border
-                border-border
-                rounded-full
-                p-1
-              "
+            <a
+              href={profileData.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile (opens in a new tab)"
+              className={cn(iconLinkClass, "hidden sm:flex")}
             >
-              {navLinks.map((link) => (
-                <a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  className={`
-                    px-5
-                    py-2
-                    rounded-full
-                    text-sm
-                    font-medium
-                    transition-all
-                    duration-300
-                    font-mono
+              <FaLinkedin size={18} />
+            </a>
+            <ButtonLink
+              href={profileData.cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              size="sm"
+              variant="secondary"
+              className="ml-1 hidden md:inline-flex"
+              leftIcon={<Download size={15} aria-hidden="true" />}
+            >
+              Resume
+            </ButtonLink>
 
-                    ${
-                      activeSection === link.id
-                        ? "text-white bg-primary shadow-lg shadow-primary/40"
-                        : "text-text-muted hover:text-white"
-                    }
-                  `}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-
-            {/* Desktop Socials */}
-            <div className="hidden md:flex items-center gap-3">
-              <a
-                href={profileData.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="
-                  w-11 h-11
-                  rounded-full
-                  flex items-center justify-center
-                  bg-primary/10
-                  border border-primary/20
-                  text-text
-                  hover:text-primary
-                  hover:border-primary
-                  hover:-translate-y-1
-                  hover:shadow-lg
-                  hover:shadow-primary/20
-                  transition-all
-                  duration-300
-                "
-              >
-                <FaGithub size={20} />
-              </a>
-
-              <a
-                href={profileData.linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="
-                  w-11 h-11
-                  rounded-full
-                  flex items-center justify-center
-                  bg-primary/10
-                  border border-primary/20
-                  text-text
-                  hover:text-primary
-                  hover:border-primary
-                  hover:-translate-y-1
-                  hover:shadow-lg
-                  hover:shadow-primary/20
-                  transition-all
-                  duration-300
-                "
-              >
-                <FaLinkedin size={20} />
-              </a>
-            </div>
-
-            {/* Mobile Menu Button */}
             <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="
-                md:hidden
-                w-10
-                h-10
-                rounded-full
-                flex
-                items-center
-                justify-center
-                bg-primary/10
-                border
-                border-primary/20
-                text-primary
-              "
+              ref={toggleRef}
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-expanded={menuOpen}
+              aria-controls={menuId}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              className="ml-1 flex h-10 w-10 items-center justify-center rounded-xl border border-border-strong/70 bg-surface/60 text-text transition-colors hover:border-primary/50 hover:text-white xl:hidden"
             >
-              {menuOpen ? (
-                <HiOutlineX size={22} />
-              ) : (
-                <HiOutlineMenuAlt3 size={22} />
-              )}
+              <AnimatePresence mode="wait" initial={false}>
+                <m.span
+                  key={menuOpen ? "close" : "open"}
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.18 }}
+                  className="flex"
+                >
+                  {menuOpen ? <X size={20} /> : <Menu size={20} />}
+                </m.span>
+              </AnimatePresence>
             </button>
           </div>
-
-          {/* Mobile Menu */}
-          <div
-            className={`
-              md:hidden
-              overflow-hidden
-              transition-all
-              duration-300
-
-              ${menuOpen ? "max-h-125 opacity-100 pb-4" : "max-h-0 opacity-0"}
-            `}
-          >
-            <div className="px-4 flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  onClick={() => setMenuOpen(false)}
-                  className={`
-                    py-3
-                    px-4
-                    rounded-xl
-                    font-medium
-                    transition-all
-
-                    ${
-                      activeSection === link.id
-                        ? "bg-primary text-white"
-                        : "text-text-muted hover:bg-primary/10 hover:text-white"
-                    }
-                  `}
-                >
-                  {link.label}
-                </a>
-              ))}
-
-              <div className="h-px bg-border my-2" />
-
-              <div className="flex items-center gap-3">
-                <a
-                  href={profileData.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    flex-1
-                    h-11
-                    rounded-xl
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    bg-primary/10
-                    border
-                    border-primary/20
-                  "
-                >
-                  <FaGithub />
-                  GitHub
-                </a>
-
-                <a
-                  href={profileData.linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    flex-1
-                    h-11
-                    rounded-xl
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    bg-primary/10
-                    border
-                    border-primary/20
-                  "
-                >
-                  <FaLinkedin />
-                  LinkedIn
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </nav>
+
+        <AnimatePresence initial={false}>
+          {menuOpen && (
+            <m.div
+              id={menuId}
+              key="mobile-menu"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: EASE_OUT_EXPO }}
+              className="overflow-hidden xl:hidden"
+            >
+              <m.ul
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.04 } },
+                }}
+                className="flex flex-col gap-1 px-3 pt-1 pb-3"
+              >
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.id;
+                  return (
+                    <m.li
+                      key={link.id}
+                      variants={{
+                        hidden: { opacity: 0, x: -8 },
+                        visible: { opacity: 1, x: 0 },
+                      }}
+                    >
+                      <a
+                        href={`#${link.id}`}
+                        onClick={() => setMenuOpen(false)}
+                        aria-current={isActive ? "true" : undefined}
+                        className={cn(
+                          "flex items-center justify-between rounded-xl px-4 py-3 font-medium transition-colors",
+                          isActive
+                            ? "bg-primary/15 text-white"
+                            : "text-text-muted hover:bg-white/5 hover:text-white",
+                        )}
+                      >
+                        {link.label}
+                        {isActive && (
+                          <span
+                            aria-hidden="true"
+                            className="h-1.5 w-1.5 rounded-full bg-primary-soft shadow-[0_0_8px_rgb(139_92_246)]"
+                          />
+                        )}
+                      </a>
+                    </m.li>
+                  );
+                })}
+                <m.li
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1 },
+                  }}
+                  className="mt-2 grid grid-cols-3 gap-2 border-t border-border pt-3"
+                >
+                  <a
+                    href={profileData.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-surface/60 text-sm text-text"
+                  >
+                    <FaGithub aria-hidden="true" /> GitHub
+                  </a>
+                  <a
+                    href={profileData.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-surface/60 text-sm text-text"
+                  >
+                    <FaLinkedin aria-hidden="true" /> LinkedIn
+                  </a>
+                  <a
+                    href={profileData.cvUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-11 items-center justify-center gap-2 rounded-xl bg-primary-hover text-sm font-medium text-white"
+                  >
+                    <Download size={15} aria-hidden="true" />
+                    {heroContent.ctaSecondary.replace("Download ", "")}
+                  </a>
+                </m.li>
+              </m.ul>
+            </m.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </header>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useActiveSection = (sectionIds: string[]) => {
+export const useActiveSection = (sectionIds: readonly string[]) => {
   const [activeSection, setActiveSection] = useState(sectionIds[0]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const useActiveSection = (sectionIds: string[]) => {
         });
       },
       {
-        rootMargin: "-40% 0px -40% 0px",
+        rootMargin: "-40% 0px -55% 0px",
       },
     );
 
