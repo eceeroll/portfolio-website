@@ -4,6 +4,7 @@ import { cn } from "@/lib/cn";
 interface SpotlightCardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   glow?: boolean;
+  contentClassName?: string;
 }
 
 const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
@@ -17,6 +18,7 @@ const SpotlightCard = ({
   children,
   className,
   glow = true,
+  contentClassName,
   ...props
 }: SpotlightCardProps) => (
   <div
@@ -46,7 +48,7 @@ const SpotlightCard = ({
         }}
       />
     )}
-    <div className="relative h-full">{children}</div>
+    <div className={cn("relative h-full", contentClassName)}>{children}</div>
   </div>
 );
 

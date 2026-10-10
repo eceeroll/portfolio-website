@@ -83,7 +83,7 @@ const AboutSection = () => {
         <StatsSection className="md:col-span-12" />
 
         <m.div variants={fadeInUp} className="md:col-span-7">
-          <SpotlightCard className="h-full p-6 sm:p-8 [&>div:last-child]:flex [&>div:last-child]:flex-col">
+          <SpotlightCard className="h-full p-6 sm:p-8" contentClassName="flex flex-col">
             <CardLabel>{aboutContent.focusLabel}</CardLabel>
             <ul className="grid flex-1 gap-3 sm:grid-cols-3">
               {heroContent.highlights.map(({ icon: Icon, label }) => (
@@ -102,7 +102,7 @@ const AboutSection = () => {
         </m.div>
 
         <m.div variants={fadeInUp} className="md:col-span-5">
-          <SpotlightCard className="flex h-full flex-col p-6 sm:p-8">
+          <SpotlightCard className="h-full p-6 sm:p-8" contentClassName="flex flex-col">
             <CardLabel>{aboutContent.connectLabel}</CardLabel>
             <p className="mb-5 text-sm text-text-muted">
               {aboutContent.connectText}

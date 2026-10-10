@@ -1,82 +1,169 @@
-import { m } from "framer-motion";
-import { ExternalLink, Code2 } from "lucide-react";
-import { FaGithub as Github } from "react-icons/fa6";
+import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 import type { Project } from "@/types/Project";
+import SpotlightCard from "@/components/ui/SpotlightCard";
+import { ButtonLink } from "@/components/ui/Button";
+import { cn } from "@/lib/cn";
 
 interface ProjectCardProps {
   project: Project;
+  featured?: boolean;
 }
 
-const ProjectCard = ({ project }: ProjectCardProps) => {
+const MAX_BADGES = 6;
+
+const initials = (title: string) =>
+  title
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0]?.toUpperCase())
+    .join("");
+
+const ProjectPreview = ({ project }: { project: Project }) => {
+  const [failed, setFailed] = useState(false);
+
+  if (project.imageUrl && !failed) {
+    return (
+      <img
+        src={project.imageUrl}
+        alt={`Screenshot of ${project.title}`}
+        loading="lazy"
+        decoding="async"
+        width={1280}
+        height={800}
+        onError={() => setFailed(true)}
+        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/spot:scale-[1.04]"
+      />
+    );
+  }
+
   return (
-    <m.div
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className="group relative bg-surface border border-border rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-shadow"
+    <div
+      role="img"
+      aria-label={`${project.title} placeholder artwork`}
+      className="relative flex h-full w-full items-center justify-center bg-[radial-gradient(80%_70%_at_30%_20%,rgb(139_92_246/0.35),transparent_70%),linear-gradient(135deg,var(--color-surface-raised),var(--color-background))]"
     >
-      <div className="relative aspect-video overflow-hidden bg-background">
-        {project.imageUrl ? (
-          <img
-            src={project.imageUrl}
-            alt={`${project.title} preview`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-surface to-background">
-            <Code2 className="text-text-muted/30" size={48} />
-          </div>
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.12]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          maskImage: "radial-gradient(circle at 50% 50%, #000, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(circle at 50% 50%, #000, transparent 75%)",
+        }}
+      />
+      <span className="text-gradient-primary relative font-display text-6xl font-semibold tracking-tight">
+        {initials(project.title)}
+      </span>
+    </div>
+  );
+};
+
+const ProjectCard = ({ project, featured = false }: ProjectCardProps) => {
+  const year = new Date(project.createdAt).getFullYear();
+  const badges = project.techStack.slice(0, MAX_BADGES);
+  const hiddenCount = project.techStack.length - badges.length;
+
+  return (
+    <SpotlightCard
+      className="h-full transition-transform duration-500 hover:-translate-y-1"
+      contentClassName={cn("flex flex-col", featured && "md:grid md:grid-cols-2")}
+    >
+      <div
+        className={cn(
+          "relative aspect-[16/10] overflow-hidden border-b border-border bg-background",
+          featured && "md:aspect-auto md:min-h-80 md:border-r md:border-b-0",
         )}
-
-        <div className="absolute inset-0 bg-linear-to-t from-surface via-transparent to-transparent opacity-60" />
-
-        <div className="absolute inset-0 flex items-center justify-center gap-3 bg-background/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-2 bg-surface border border-border hover:border-primary text-text px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-            >
-              <Github size={16} />
-              Code
-            </a>
-          )}
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-            >
-              <ExternalLink size={16} />
-              Live Demo
-            </a>
-          )}
-        </div>
+      >
+        <ProjectPreview project={project} />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-linear-to-t from-surface/70 via-transparent to-transparent"
+        />
+        {!Number.isNaN(year) && (
+          <span className="glass absolute top-3 left-3 rounded-full border border-border-strong/70 px-2.5 py-0.5 font-mono text-[0.7rem] text-text">
+            {year}
+          </span>
+        )}
       </div>
 
-      <div className="p-6">
-        <h3 className="text-text text-lg font-semibold mb-2">
+      <div className={cn("flex flex-1 flex-col p-6", featured && "md:justify-center md:p-9")}>
+        <h3
+          className={cn(
+            "font-display font-semibold tracking-tight text-white",
+            featured ? "text-2xl md:text-3xl" : "text-xl",
+          )}
+        >
           {project.title}
         </h3>
-        <p className="text-text-muted text-sm mb-4 leading-relaxed line-clamp-2">
+        <p
+          className={cn(
+            "mt-3 text-sm leading-relaxed text-text-muted",
+            featured ? "md:text-base" : "line-clamp-3",
+          )}
+        >
           {project.description}
         </p>
 
-        <div className="flex flex-wrap gap-2">
-          {project.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-md"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+        {badges.length > 0 && (
+          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies used">
+            {badges.map((tech) => (
+              <li
+                key={tech}
+                className="rounded-md border border-primary/20 bg-primary/10 px-2.5 py-1 font-mono text-[0.7rem] text-primary-pale"
+              >
+                {tech}
+              </li>
+            ))}
+            {hiddenCount > 0 && (
+              <li className="rounded-md border border-border px-2.5 py-1 font-mono text-[0.7rem] text-text-muted">
+                +{hiddenCount}
+              </li>
+            )}
+          </ul>
+        )}
+
+        {(project.liveUrl || project.githubUrl) && (
+          <div className="mt-auto flex flex-wrap gap-2 pt-6">
+            {project.liveUrl && (
+              <ButtonLink
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                size="sm"
+                aria-label={`Open live demo of ${project.title} (opens in a new tab)`}
+                rightIcon={
+                  <ArrowUpRight
+                    size={15}
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                  />
+                }
+              >
+                Live demo
+              </ButtonLink>
+            )}
+            {project.githubUrl && (
+              <ButtonLink
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                size="sm"
+                variant="secondary"
+                aria-label={`View source code of ${project.title} on GitHub (opens in a new tab)`}
+                leftIcon={<FaGithub size={15} aria-hidden="true" />}
+              >
+                Source code
+              </ButtonLink>
+            )}
+          </div>
+        )}
       </div>
-    </m.div>
+    </SpotlightCard>
   );
 };
 
