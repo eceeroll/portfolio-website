@@ -1,26 +1,21 @@
 import { m } from "framer-motion";
 import { statsData } from "@/data/stats";
 import StatCard from "@/components/ui/StatCard";
-import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { fadeInUp } from "@/lib/animations";
+import { cn } from "@/lib/cn";
 
-const StatsSection = () => {
-  return (
-    <section className="px-6 py-16 border-y border-border">
-      <m.div
-        className="max-w-5xl mx-auto w-full grid grid-cols-2 md:grid-cols-4 gap-8"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.4 }}
-      >
-        {statsData.map((stat) => (
-          <m.div key={stat.label} variants={fadeInUp}>
-            <StatCard stat={stat} />
-          </m.div>
-        ))}
+const StatsSection = ({ className }: { className?: string }) => (
+  <div
+    role="group"
+    aria-label="Quick stats"
+    className={cn("grid grid-cols-2 gap-4 lg:grid-cols-4", className)}
+  >
+    {statsData.map((stat) => (
+      <m.div key={stat.label} variants={fadeInUp}>
+        <StatCard stat={stat} />
       </m.div>
-    </section>
-  );
-};
+    ))}
+  </div>
+);
 
 export default StatsSection;

@@ -1,5 +1,6 @@
 import { useCountUp } from "@/hooks/useCountUp";
 import type { StatItem } from "@/data/stats";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 interface StatCardProps {
   stat: StatItem;
@@ -7,15 +8,21 @@ interface StatCardProps {
 
 const StatCard = ({ stat }: StatCardProps) => {
   const { count, ref } = useCountUp(stat.value);
+  const finalValue = `${stat.value.toLocaleString("en-US")}${stat.suffix ?? ""}`;
 
   return (
-    <div ref={ref} className="text-center">
-      <p className="text-4xl md:text-5xl font-bold text-primary mb-2">
-        {count.toLocaleString()}
-        {stat.suffix}
-      </p>
-      <p className="text-text-muted text-sm">{stat.label}</p>
-    </div>
+    <SpotlightCard className="h-full p-5 sm:p-6">
+      <div ref={ref}>
+        <p className="font-display text-4xl font-semibold tracking-tight tabular-nums sm:text-5xl">
+          <span className="sr-only">{finalValue}</span>
+          <span aria-hidden="true" className="text-gradient">
+            {count.toLocaleString("en-US")}
+            <span className="text-primary-soft">{stat.suffix}</span>
+          </span>
+        </p>
+        <p className="mt-2 text-sm text-text-muted">{stat.label}</p>
+      </div>
+    </SpotlightCard>
   );
 };
 

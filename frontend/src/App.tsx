@@ -7,7 +7,7 @@ import AboutSection from "@/components/sections/About";
 import ContactSection from "@/components/sections/Contact";
 import HeroSection from "@/components/sections/Hero";
 import ProjectsSection from "@/components/sections/Projects";
-import StatsSection from "@/components/sections/StatsSection";
+import ExperienceSection from "@/components/sections/Experience";
 import TechStackSection from "@/components/sections/TechStackSection";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 
@@ -30,8 +30,8 @@ function App() {
         <Navbar />
         <main id="main" tabIndex={-1} className="relative text-text outline-none">
           <HeroSection />
-          <StatsSection />
           <AboutSection />
+          <ExperienceSection />
           <TechStackSection />
           <ProjectsSection />
           <ContactSection />
