@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { TechItem } from "../../data/techStack";
+import type { TechItem } from "@/data/techStack";
 
 interface TechCardProps {
   tech: TechItem;

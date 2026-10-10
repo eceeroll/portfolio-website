@@ -47,6 +47,7 @@ export const projectsContent = {
     title: "My Projects",
   } as SectionContent,
   loadingText: "Loading projects...",
+  emptyText: "New projects are on the way. Check back soon!",
 };
 
 export const contactContent = {

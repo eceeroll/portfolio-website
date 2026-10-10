@@ -1,5 +1,5 @@
-import { useCountUp } from "../../hooks/useCountUp";
-import type { StatItem } from "../../data/stats";
+import { useCountUp } from "@/hooks/useCountUp";
+import type { StatItem } from "@/data/stats";
 
 interface StatCardProps {
   stat: StatItem;

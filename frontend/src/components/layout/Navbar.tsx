@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
-import { useActiveSection } from "../../hooks/useActiveSections";
-import logo from "../../assets/logo2.png";
-import { navLinks, profileData } from "../../data/profile";
+import { useActiveSection } from "@/hooks/useActiveSections";
+import logo from "@/assets/logo.webp";
+import { navLinks, profileData } from "@/data/profile";
 
 const Navbar = () => {
   const activeSection = useActiveSection(navLinks.map((link) => link.id));

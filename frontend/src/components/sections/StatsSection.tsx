@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { statsData } from "../../data/stats";
-import StatCard from "../ui/StatCard";
-import { fadeInUp, staggerContainer } from "../../lib/animations";
+import { statsData } from "@/data/stats";
+import StatCard from "@/components/ui/StatCard";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 const StatsSection = () => {
   return (

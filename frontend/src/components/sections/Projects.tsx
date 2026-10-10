@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { useProjects } from "../../hooks/useProjects";
-import ProjectCard from "../ui/ProjectCard";
-import SectionHeading from "../ui/SectionHeading";
-import { fadeInUp, staggerContainer } from "../../lib/animations";
-import { projectsContent } from "../../data/content";
-import ProjectCardSkeleton from "../ui/ProjectCardSkeleton";
+import { useProjects } from "@/hooks/useProjects";
+import ProjectCard from "@/components/ui/ProjectCard";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { projectsContent } from "@/data/content";
+import ProjectCardSkeleton from "@/components/ui/ProjectCardSkeleton";
 
 const ProjectsSection = () => {
-  const { projects, loading, error } = useProjects();
+  const { projects, loading, error, retry } = useProjects();
 
   return (
     <section
@@ -34,7 +34,29 @@ const ProjectsSection = () => {
           </div>
         )}
 
-        {!loading && !error && (
+        {!loading && error && (
+          <div
+            role="alert"
+            className="flex flex-col items-center gap-4 rounded-xl border border-border bg-surface/60 px-6 py-12 text-center"
+          >
+            <p className="text-text">{error}</p>
+            <button
+              type="button"
+              onClick={retry}
+              className="rounded-lg bg-primary-hover px-5 py-2.5 text-sm font-medium text-white hover:bg-primary"
+            >
+              Try again
+            </button>
+          </div>
+        )}
+
+        {!loading && !error && projects.length === 0 && (
+          <p className="rounded-xl border border-border bg-surface/60 px-6 py-12 text-center text-text-muted">
+            {projectsContent.emptyText}
+          </p>
+        )}
+
+        {!loading && !error && projects.length > 0 && (
           <div className="grid md:grid-cols-2 gap-6">
             {projects.map((project) => (
               <motion.div key={project.id} variants={fadeInUp}>

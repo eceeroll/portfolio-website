@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { profileData, socialLinks } from "../../data/profile";
+import { profileData, socialLinks } from "@/data/profile";
 
 const Footer = () => {
   const year = new Date().getFullYear();

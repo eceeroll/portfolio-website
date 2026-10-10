@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { staggerContainer, fadeInUp } from "../../lib/animations";
-import { heroContent } from "../../data/content";
-import TerminalCard from "../ui/TerninalCard";
+import { staggerContainer, fadeInUp } from "@/lib/animations";
+import { heroContent } from "@/data/content";
+import TerminalCard from "@/components/ui/TerminalCard";
 import { FaDownload } from "react-icons/fa";
 
 const HeroSection = () => {

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useTypewriter } from "../../hooks/useTypewriter";
+import { useTypewriter } from "@/hooks/useTypewriter";
 
 const codeLines = [
   "const developer = {",

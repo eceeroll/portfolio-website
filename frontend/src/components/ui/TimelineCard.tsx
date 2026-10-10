@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Briefcase } from "lucide-react";
-import type { TimelineItem } from "../../data/experience";
+import type { TimelineItem } from "@/data/experience";
 
 interface TimelineCardProps {
   item: TimelineItem;

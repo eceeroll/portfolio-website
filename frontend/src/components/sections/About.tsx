@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "../../lib/animations";
-import { timelineData } from "../../data/experience";
-import { aboutContent } from "../../data/content";
-import TimelineCard from "../ui/TimelineCard";
-import SectionHeading from "../ui/SectionHeading";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { timelineData } from "@/data/experience";
+import { aboutContent } from "@/data/content";
+import TimelineCard from "@/components/ui/TimelineCard";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const AboutSection = () => {
   return (

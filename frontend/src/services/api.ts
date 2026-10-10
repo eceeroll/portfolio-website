@@ -8,6 +8,7 @@ if (!apiBaseUrl) {
 
 export const api = axios.create({
   baseURL: `${apiBaseUrl.replace(/\/$/, "")}/api`,
+  timeout: 60_000,
   headers: {
     "Content-Type": "application/json",
   },

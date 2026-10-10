@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { techStackData } from "../../data/techStack";
-import SectionHeading from "../ui/SectionHeading";
-import { fadeInUp, staggerContainer } from "../../lib/animations";
-import TechCard from "../ui/TechStackCard";
+import { techStackData } from "@/data/techStack";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
+import TechCard from "@/components/ui/TechStackCard";
 
 const TechStackSection = () => {
   return (

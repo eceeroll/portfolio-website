@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Code2 } from "lucide-react";
 import { FaGithub as Github } from "react-icons/fa6";
-import type { Project } from "../../types/Project";
+import type { Project } from "@/types/Project";
 
 interface ProjectCardProps {
   project: Project;

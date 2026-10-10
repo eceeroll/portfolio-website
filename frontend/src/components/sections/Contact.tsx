@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { sendContactMessage } from "../../services/contactService";
-import SectionHeading from "../ui/SectionHeading";
-import { fadeInUp, staggerContainer } from "../../lib/animations";
-import { socialLinks } from "../../data/profile";
-import { contactContent } from "../../data/content";
+import { sendContactMessage } from "@/services/contactService";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { socialLinks } from "@/data/profile";
+import { contactContent } from "@/data/content";
+import { validateContact } from "@/lib/contactValidation";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -25,6 +26,14 @@ const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const clientErrors = validateContact(formData);
+    if (Object.keys(clientErrors).length > 0) {
+      setStatus("error");
+      setErrorMessage(Object.values(clientErrors).join(". "));
+      return;
+    }
+
     setStatus("loading");
     setErrorMessage("");
 
