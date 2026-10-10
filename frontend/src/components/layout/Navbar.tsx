@@ -55,12 +55,14 @@ const Navbar = () => {
     >
       <nav
         aria-label="Primary"
-        className={cn(
-          "mx-auto max-w-6xl rounded-2xl border transition-[background-color,border-color,box-shadow] duration-300",
-          scrolled || menuOpen
-            ? "glass border-border shadow-[0_10px_40px_-12px_rgb(0_0_0/0.6)]"
-            : "border-transparent bg-transparent",
-        )}
+            className={cn(
+              "mx-auto max-w-6xl rounded-2xl border transition-[background-color,border-color,box-shadow] duration-300",
+              menuOpen
+                ? "border-border bg-surface shadow-[0_10px_40px_-12px_rgb(0_0_0/0.6)]"
+                : scrolled
+                  ? "glass border-border shadow-[0_10px_40px_-12px_rgb(0_0_0/0.6)]"
+                  : "border-transparent bg-transparent",
+            )}
       >
         <div className="flex h-16 items-center justify-between gap-4 pr-2 pl-4 sm:pl-5">
           <a
@@ -73,6 +75,7 @@ const Navbar = () => {
               alt=""
               width={66}
               height={36}
+              fetchPriority="high"
               className="h-9 w-auto drop-shadow-[0_0_10px_rgb(139_92_246/0.55)] transition-transform duration-300 group-hover:scale-105"
             />
             <span className="hidden font-display text-sm font-semibold tracking-tight text-text sm:inline">

@@ -1,6 +1,5 @@
-@import "@fontsource-variable/inter";
-@import "@fontsource-variable/space-grotesk";
-@import "@fontsource-variable/jetbrains-mono";
+@import "./styles/fonts.css";
+@import "@fontsource-variable/space-grotesk/wght.css";
 @import "lenis/dist/lenis.css";
 
 @import "tailwindcss";

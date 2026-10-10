@@ -216,7 +216,7 @@ const ContactSection = () => {
         viewport={revealViewport}
         className="grid gap-6 lg:grid-cols-12 lg:gap-8"
       >
-        <m.div variants={fadeInUp} className="flex flex-col gap-6 lg:col-span-5">
+        <m.div variants={fadeInUp} className="flex min-w-0 flex-col gap-6 lg:col-span-5">
           <p className="text-lg leading-relaxed text-text-muted">{contactContent.intro}</p>
 
           <SpotlightCard className="p-5 sm:p-6">
@@ -272,7 +272,7 @@ const ContactSection = () => {
           </ul>
         </m.div>
 
-        <m.div variants={fadeInUp} className="lg:col-span-7">
+        <m.div variants={fadeInUp} className="min-w-0 lg:col-span-7">
           <SpotlightCard className="p-6 sm:p-8">
             <form noValidate onSubmit={handleSubmit} aria-describedby={`${formId}-status`} className="grid gap-5 sm:grid-cols-2">
               {renderField("name")}

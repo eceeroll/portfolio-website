@@ -11,8 +11,8 @@ import { scrollToTarget } from "@/lib/smoothScroll";
 
 const delay = (ms: number): CSSProperties => ({ animationDelay: `${ms}ms` });
 
-const LETTER_STAGGER_MS = 35;
-const NAME_START_MS = 120;
+const LETTER_STAGGER_MS = 30;
+const NAME_START_MS = 80;
 
 const AnimatedName = ({ text }: { text: string }) => {
   let letterIndex = 0;
@@ -74,7 +74,7 @@ const HeroSection = () => (
     className="relative flex min-h-[100svh] items-center pt-28 pb-20 lg:pt-24"
   >
     <Container className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
-      <div className="lg:col-span-7">
+      <div className="min-w-0 lg:col-span-7">
         <p
           className={`${fadeUp} mb-7 inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-primary/10 py-1.5 pr-4 pl-3 font-mono text-[0.7rem] tracking-[0.22em] text-primary-pale sm:text-xs`}
           style={delay(0)}
@@ -92,21 +92,21 @@ const HeroSection = () => (
 
         <p
           className={`${fadeUp} mb-5 font-display text-xl font-medium tracking-tight text-text sm:text-2xl md:text-[1.75rem]`}
-          style={delay(550)}
+          style={delay(350)}
         >
           {heroContent.subtitle}
         </p>
 
         <p
           className={`${fadeUp} mb-8 max-w-xl text-base leading-relaxed text-text-muted md:text-lg`}
-          style={delay(650)}
+          style={delay(420)}
         >
           {heroContent.description}
         </p>
 
         <ul
           className={`${fadeUp} mb-10 flex flex-wrap gap-2`}
-          style={delay(750)}
+          style={delay(500)}
           aria-label="Focus areas"
         >
           {heroContent.highlights.map(({ icon: Icon, label }) => (
@@ -122,7 +122,7 @@ const HeroSection = () => (
 
         <div
           className={`${fadeUp} flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center`}
-          style={delay(850)}
+          style={delay(580)}
         >
           <Magnetic className="flex sm:inline-flex">
             <ButtonLink
@@ -157,7 +157,7 @@ const HeroSection = () => (
 
         <ul
           className={`${fadeUp} mt-10 flex items-center gap-2`}
-          style={delay(950)}
+          style={delay(660)}
           aria-label="Social links"
         >
           {socials.map(({ href, label, icon: Icon, external }) => (
@@ -177,7 +177,7 @@ const HeroSection = () => (
         </ul>
       </div>
 
-      <div className="relative lg:col-span-5">
+      <div className="relative min-w-0 lg:col-span-5">
         <TerminalCard />
       </div>
     </Container>
@@ -187,7 +187,7 @@ const HeroSection = () => (
       size="sm"
       onClick={() => scrollToTarget("#about")}
       className={`${fadeUp} absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col gap-2 text-xs tracking-[0.2em] uppercase md:inline-flex`}
-      style={delay(1200)}
+      style={delay(900)}
       rightIcon={
         <ArrowDown
           size={16}

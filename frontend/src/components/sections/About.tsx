@@ -7,6 +7,7 @@ import Section from "@/components/ui/Section";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import StatsSection from "@/components/sections/StatsSection";
 import { ButtonLink } from "@/components/ui/Button";
+import LazyImage from "@/components/ui/LazyImage";
 import portrait from "@/assets/portrait.webp";
 
 const CardLabel = ({ children }: { children: string }) => (
@@ -60,13 +61,11 @@ const AboutSection = () => {
                   "radial-gradient(circle at 50% 40%, #000, transparent 70%)",
               }}
             />
-            <img
+            <LazyImage
               src={portrait}
               alt={aboutContent.portraitAlt}
               width={560}
               height={785}
-              loading="lazy"
-              decoding="async"
               className="absolute inset-x-0 bottom-0 mx-auto h-[95%] w-auto object-contain object-bottom drop-shadow-[0_0_40px_rgb(139_92_246/0.35)] transition-transform duration-700 ease-out group-hover/spot:scale-[1.03]"
             />
             <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-background via-background/80 to-transparent px-6 pt-16 pb-5">

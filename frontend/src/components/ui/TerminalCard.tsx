@@ -1,5 +1,6 @@
 import { Fragment } from "react";
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { SiNodedotjs, SiPostgresql, SiReact } from "react-icons/si";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { heroContent } from "@/data/content";
@@ -45,7 +46,7 @@ const FLOATING_BADGES = [
 const { lines, fileName } = heroContent.terminal;
 
 const TerminalCard = () => {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
   const typed = useTypewriter({
     lines,
     typingSpeed: 28,

@@ -30,7 +30,7 @@ function App() {
           <BackgroundLayer />
           <ScrollProgress />
           <Navbar />
-          <main id="main" tabIndex={-1} className="relative text-text outline-none">
+          <main id="main" tabIndex={-1} className="relative overflow-x-clip text-text outline-none">
             <HeroSection />
             <AboutSection />
             <ExperienceSection />
