@@ -229,7 +229,7 @@ const ContactSection = () => {
               </span>
               <a
                 href={`mailto:${profileData.email}`}
-                className="min-w-0 flex-1 truncate font-medium text-white decoration-primary-soft/60 underline-offset-4 hover:underline"
+                className="min-w-0 flex-1 font-medium break-all text-white decoration-primary-soft/60 underline-offset-4 hover:underline"
               >
                 {profileData.email}
               </a>

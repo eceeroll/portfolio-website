@@ -8,6 +8,7 @@ import ContactSection from "@/components/sections/Contact";
 import ExperienceSection from "@/components/sections/Experience";
 import HeroSection from "@/components/sections/Hero";
 import ProjectsSection from "@/components/sections/Projects";
+import StatsSection from "@/components/sections/StatsSection";
 import TechStackSection from "@/components/sections/TechStackSection";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import ToastProvider from "@/components/ui/ToastProvider";
@@ -32,6 +33,7 @@ function App() {
           <Navbar />
           <main id="main" tabIndex={-1} className="relative overflow-x-clip text-text outline-none">
             <HeroSection />
+            <StatsSection />
             <AboutSection />
             <ExperienceSection />
             <TechStackSection />

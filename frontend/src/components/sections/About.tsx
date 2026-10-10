@@ -5,10 +5,7 @@ import { aboutContent, heroContent } from "@/data/content";
 import { profileData, socialLinks } from "@/data/profile";
 import Section from "@/components/ui/Section";
 import SpotlightCard from "@/components/ui/SpotlightCard";
-import StatsSection from "@/components/sections/StatsSection";
 import { ButtonLink } from "@/components/ui/Button";
-import LazyImage from "@/components/ui/LazyImage";
-import portrait from "@/assets/portrait.webp";
 
 const CardLabel = ({ children }: { children: string }) => (
   <p className="mb-5 font-mono text-[0.7rem] tracking-[0.2em] text-primary-soft uppercase">
@@ -29,8 +26,8 @@ const AboutSection = () => {
         viewport={revealViewport}
         className="grid gap-4 md:grid-cols-12"
       >
-        <m.div variants={fadeInUp} className="md:col-span-7">
-          <SpotlightCard className="h-full p-6 sm:p-8 md:p-9">
+        <m.div variants={fadeInUp} className="order-1 md:col-span-7 lg:col-span-8">
+          <SpotlightCard className="h-full border-l-2 border-l-primary p-6 sm:p-8 md:p-9">
             <CardLabel>{aboutContent.bioLabel}</CardLabel>
             <p className="mb-5 font-display text-xl leading-snug font-medium tracking-tight text-text sm:text-2xl">
               {lead}
@@ -43,45 +40,7 @@ const AboutSection = () => {
           </SpotlightCard>
         </m.div>
 
-        <m.div variants={fadeInUp} className="md:col-span-5">
-          <SpotlightCard className="relative h-full min-h-[24rem] p-0">
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_45%,rgb(139_92_246/0.35),transparent_70%)]"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 opacity-[0.08]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-                backgroundSize: "32px 32px",
-                maskImage: "radial-gradient(circle at 50% 40%, #000, transparent 70%)",
-                WebkitMaskImage:
-                  "radial-gradient(circle at 50% 40%, #000, transparent 70%)",
-              }}
-            />
-            <LazyImage
-              src={portrait}
-              alt={aboutContent.portraitAlt}
-              width={560}
-              height={785}
-              className="absolute inset-x-0 bottom-0 mx-auto h-[95%] w-auto object-contain object-bottom drop-shadow-[0_0_40px_rgb(139_92_246/0.35)] transition-transform duration-700 ease-out group-hover/spot:scale-[1.03]"
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-background via-background/80 to-transparent px-6 pt-16 pb-5">
-              <p className="font-display text-lg font-semibold text-white">
-                {profileData.fullName}
-              </p>
-              <p className="font-mono text-xs text-primary-pale">
-                {profileData.title}
-              </p>
-            </div>
-          </SpotlightCard>
-        </m.div>
-
-        <StatsSection className="md:col-span-12" />
-
-        <m.div variants={fadeInUp} className="md:col-span-7">
+        <m.div variants={fadeInUp} className="order-3 md:col-span-12">
           <SpotlightCard className="h-full p-6 sm:p-8" contentClassName="flex flex-col">
             <CardLabel>{aboutContent.focusLabel}</CardLabel>
             <ul className="grid flex-1 gap-3 sm:grid-cols-3">
@@ -100,7 +59,7 @@ const AboutSection = () => {
           </SpotlightCard>
         </m.div>
 
-        <m.div variants={fadeInUp} className="md:col-span-5">
+        <m.div variants={fadeInUp} className="order-2 md:col-span-5 lg:col-span-4">
           <SpotlightCard className="h-full p-6 sm:p-8" contentClassName="flex flex-col">
             <CardLabel>{aboutContent.connectLabel}</CardLabel>
             <p className="mb-5 text-sm text-text-muted">

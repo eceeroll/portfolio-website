@@ -5,6 +5,7 @@ import { SiNodedotjs, SiPostgresql, SiReact } from "react-icons/si";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { heroContent } from "@/data/content";
 import { EASE_OUT_EXPO } from "@/lib/animations";
+import { cn } from "@/lib/cn";
 
 type TokenType = "keyword" | "key" | "string" | "punct" | "plain";
 
@@ -45,7 +46,7 @@ const FLOATING_BADGES = [
 
 const { lines, fileName } = heroContent.terminal;
 
-const TerminalCard = () => {
+const TerminalCard = ({ embedded = false }: { embedded?: boolean }) => {
   const reduceMotion = usePrefersReducedMotion();
   const typed = useTypewriter({
     lines,
@@ -62,14 +63,16 @@ const TerminalCard = () => {
       initial={{ opacity: 0, y: 24, rotateX: 8 }}
       animate={{ opacity: 1, y: 0, rotateX: 0 }}
       transition={{ duration: 0.9, delay: 0.3, ease: EASE_OUT_EXPO }}
-      className="relative mx-auto w-full max-w-lg [perspective:1200px]"
+      className={embedded ? "relative w-full" : "relative mx-auto w-full max-w-lg [perspective:1200px]"}
     >
-      <div
-        aria-hidden="true"
-        className="absolute -inset-6 rounded-[2rem] bg-[radial-gradient(closest-side,rgb(139_92_246/0.35),transparent)] blur-2xl"
-      />
+      {!embedded && (
+        <div
+          aria-hidden="true"
+          className="absolute -inset-6 rounded-[2rem] bg-[radial-gradient(closest-side,rgb(139_92_246/0.35),transparent)] blur-2xl"
+        />
+      )}
 
-      <figure className="relative overflow-hidden rounded-2xl border border-border-strong/70 bg-surface/80 shadow-[0_30px_80px_-30px_rgb(0_0_0/0.9),0_0_0_1px_rgb(139_92_246/0.08)] backdrop-blur-xl">
+      <figure className={`relative overflow-hidden rounded-2xl border border-primary/25 bg-surface/95 shadow-[0_30px_80px_-30px_rgb(0_0_0/0.9)] backdrop-blur-xl ${embedded ? "shadow-black/60" : "border-border-strong/70"}`}>
         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary-soft/60 to-transparent" />
 
         <div className="flex items-center gap-2 border-b border-border bg-background/60 px-4 py-3">
@@ -87,7 +90,12 @@ const TerminalCard = () => {
 
         <pre
           aria-hidden="true"
-          className="min-h-[15.5rem] overflow-x-auto px-4 py-5 font-mono text-[0.78rem] leading-7 sm:px-5 sm:text-[0.85rem]"
+          className={cn(
+            "overflow-x-auto px-4 font-mono",
+            embedded
+              ? "max-h-40 py-3 text-[0.68rem] leading-5 sm:max-h-44 sm:text-[0.75rem]"
+              : "min-h-[15.5rem] py-5 text-[0.78rem] leading-7 sm:px-5 sm:text-[0.85rem]",
+          )}
         >
           <code className="grid grid-cols-[auto_1fr] gap-x-4">
             {lines.map((_, index) => {
@@ -116,7 +124,7 @@ const TerminalCard = () => {
           </code>
         </pre>
 
-        <div className="flex items-center justify-between border-t border-border bg-background/50 px-4 py-2 font-mono text-[0.68rem] text-text-muted">
+        <div className="flex items-center justify-between gap-3 border-t border-border bg-background/50 px-4 py-2 font-mono text-[0.62rem] whitespace-nowrap text-text-muted sm:text-[0.68rem]">
           <span className="flex items-center gap-2">
             <span
               className={`h-1.5 w-1.5 rounded-full ${isDone ? "bg-emerald-400" : "bg-amber-400"}`}
@@ -127,7 +135,7 @@ const TerminalCard = () => {
         </div>
       </figure>
 
-      {FLOATING_BADGES.map(({ icon: Icon, label, className, delay }) => (
+      {!embedded && FLOATING_BADGES.map(({ icon: Icon, label, className, delay }) => (
         <m.div
           key={label}
           aria-hidden="true"

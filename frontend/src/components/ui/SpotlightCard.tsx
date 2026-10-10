@@ -24,7 +24,7 @@ const SpotlightCard = ({
   <div
     onPointerMove={handlePointerMove}
     className={cn(
-      "group/spot relative overflow-hidden rounded-2xl border border-border bg-surface/70 transition-[border-color,transform,box-shadow] duration-300",
+      "group/spot relative overflow-hidden rounded-2xl border border-primary/20 bg-[linear-gradient(180deg,rgb(139_92_246/0.09),transparent_32%),var(--color-surface)] shadow-[inset_0_1px_0_rgb(196_181_253/0.16)] transition-[border-color,transform,box-shadow] duration-300",
       "hover:border-primary/30 hover:shadow-[0_20px_60px_-30px_rgb(139_92_246/0.6)]",
       className,
     )}

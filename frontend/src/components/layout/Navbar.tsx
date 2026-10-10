@@ -33,7 +33,7 @@ const Navbar = () => {
       }
     };
     const onResize = () => {
-      if (window.innerWidth >= 1024) setMenuOpen(false);
+      if (window.innerWidth >= 1280) setMenuOpen(false);
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -83,7 +83,7 @@ const Navbar = () => {
             </span>
           </a>
 
-          <ul className="hidden items-center gap-1 lg:flex">
+          <ul className="hidden items-center gap-1 xl:flex">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -151,7 +151,7 @@ const Navbar = () => {
               aria-expanded={menuOpen}
               aria-controls={menuId}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
-              className="ml-1 flex h-10 w-10 items-center justify-center rounded-xl border border-border-strong/70 bg-surface/60 text-text transition-colors hover:border-primary/50 hover:text-white lg:hidden"
+              className="ml-1 flex h-10 w-10 items-center justify-center rounded-xl border border-border-strong/70 bg-surface/60 text-text transition-colors hover:border-primary/50 hover:text-white xl:hidden"
             >
               <AnimatePresence mode="wait" initial={false}>
                 <m.span
@@ -178,7 +178,7 @@ const Navbar = () => {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.35, ease: EASE_OUT_EXPO }}
-              className="overflow-hidden lg:hidden"
+              className="overflow-hidden xl:hidden"
             >
               <m.ul
                 initial="hidden"

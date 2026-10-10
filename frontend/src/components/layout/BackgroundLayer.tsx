@@ -23,7 +23,7 @@ const BackgroundLayer = () => (
       className="absolute -top-[30%] left-1/2 h-[70rem] w-[70rem] -translate-x-1/2 animate-drift rounded-full motion-reduce:animate-none"
       style={{
         background:
-          "radial-gradient(closest-side, rgb(139 92 246 / 0.22), rgb(139 92 246 / 0.06) 55%, transparent)",
+          "radial-gradient(closest-side, rgb(139 92 246 / 0.38), rgb(139 92 246 / 0.1) 55%, transparent)",
       }}
     />
     <div
